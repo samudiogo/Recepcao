@@ -7,7 +7,11 @@ namespace DPGERJ.Recepcao.Domain.Entities
         public int Id { get; set; }
         public string PessoaMotivo { get; set; }
         public DateTime DataCadastro { get; set; }
-        public Assistido Assistido { get; set; }
-        public Destino Destino { get; set; }
+
+        public int IdAssistido { get; set; }
+        public int IdDestino { get; set; }
+
+        public virtual Assistido Assistido { get; set; }
+        public virtual Destino Destino { get; set; }
     }
 }

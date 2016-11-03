@@ -7,5 +7,7 @@
         public string Documento { get; set; }
         public string OrgaoEmissor { get; set; }
         public string ImagemUrl { get; set; }
+
+        public virtual Visita Visita { get; set; }
     }
 }
