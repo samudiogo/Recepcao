@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B3BFBBC0-30F6-4E16-A108-7B0BB85DE586}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17C05B83-D6ED-4434-AA67-DD3667C16B66}"
+	ProjectSection(SolutionItems) = preProject
+		sprint-0.md = sprint-0.md
+		stakeholders.md = stakeholders.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
