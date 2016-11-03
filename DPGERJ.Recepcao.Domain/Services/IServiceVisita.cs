@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DPGERJ.Recepcao.Domain.Entities;
 
 namespace DPGERJ.Recepcao.Domain.Services
 {
-    interface IServiceVisita
+    interface IServiceVisita : IServiceBase<Visita>
     {
     }
 }
