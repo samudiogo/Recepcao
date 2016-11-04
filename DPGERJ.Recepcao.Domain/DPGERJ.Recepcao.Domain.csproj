@@ -44,6 +44,10 @@
     <Compile Include="Entities\Destino.cs" />
     <Compile Include="Entities\Visita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IServiceAssistido.cs" />
+    <Compile Include="Services\IServiceBase.cs" />
+    <Compile Include="Services\IServiceDestino.cs" />
+    <Compile Include="Services\IServiceVisita.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
