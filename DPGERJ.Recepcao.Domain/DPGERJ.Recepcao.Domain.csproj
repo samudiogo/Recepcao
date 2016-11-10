@@ -43,13 +43,19 @@
     <Compile Include="Entities\Assistido.cs" />
     <Compile Include="Entities\Destino.cs" />
     <Compile Include="Entities\Visita.cs" />
+    <Compile Include="Interfaces\Repository\IAssistidoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IDestinoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repository\IVisitaRepository.cs" />
     <Compile Include="Interfaces\Service\IServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\Service\IServiceAssistido.cs" />
-    <Compile Include="Interfaces\Service\IServiceDestino.cs" />
-    <Compile Include="Interfaces\Service\IServiceVisita.cs" />
+    <Compile Include="Interfaces\Service\IAssistidoService.cs" />
+    <Compile Include="Interfaces\Service\IDestinoService.cs" />
+    <Compile Include="Interfaces\Service\IVisitaService.cs" />
+    <Compile Include="Services\AssitidoService.cs" />
+    <Compile Include="Services\DestinoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\VisitaService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

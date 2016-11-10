@@ -166,6 +166,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Fake\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

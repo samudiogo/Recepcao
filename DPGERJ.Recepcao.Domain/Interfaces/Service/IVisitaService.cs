@@ -2,7 +2,7 @@
 
 namespace DPGERJ.Recepcao.Domain.Interfaces.Service
 {
-    interface IServiceVisita : IServiceBase<Visita>
+    interface IVisitaService : IServiceBase<Visita>
     {
     }
 }
