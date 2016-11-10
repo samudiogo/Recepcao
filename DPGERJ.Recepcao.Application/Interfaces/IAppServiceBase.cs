@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DPGERJ.Recepcao.Application.Interfaces
 {
-    public interface IAppServiceBase<TEntity> where TEntity : class
+    public interface IAppServiceBase<TEntity> where TEntity : class, IDisposable
     {
         TEntity GetById(int id);
         IEnumerable<TEntity> GetAll();
