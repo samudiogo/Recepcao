@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Interfaces.Service;
+using System;
 
 namespace DPGERJ.Recepcao.Application.Services
 {
-    public class AppServiceBase<TEntity> : IAppServiceBase<TEntity> where TEntity : class
+    public class AppServiceBase<TEntity> : IDisposable,IAppServiceBase<TEntity> where TEntity : class
     {
         protected IServiceBase<TEntity> Service { get; }
 
@@ -22,5 +23,10 @@ namespace DPGERJ.Recepcao.Application.Services
         public void Remove(TEntity entity) => Service.Remove(entity);
 
         public void Update(TEntity entity) => Service.Update(entity);
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
