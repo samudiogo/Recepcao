@@ -137,11 +137,20 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +169,8 @@
     <Content Include="packages.config" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Destino\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,9 +181,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Assistido\" />
-    <Folder Include="Views\Destino\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Application\DPGERJ.Recepcao.Application.csproj">
+      <Project>{b995d215-6cd4-4127-89b6-397fc48a1432}</Project>
+      <Name>DPGERJ.Recepcao.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
       <Project>{1908540d-6424-4f0e-b12e-6d73060364a1}</Project>
       <Name>DPGERJ.Recepcao.Domain</Name>
