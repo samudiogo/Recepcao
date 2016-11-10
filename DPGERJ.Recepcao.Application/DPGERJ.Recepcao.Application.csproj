@@ -45,10 +45,12 @@
     <Compile Include="Interfaces\IDestinoAppService.cs" />
     <Compile Include="Interfaces\IVisitaAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AssistidoAppService.cs" />
+    <Compile Include="Services\DestinoAppService.cs" />
+    <Compile Include="Services\AppServiceBase.cs" />
+    <Compile Include="Services\VisitaAppService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
       <Project>{1908540D-6424-4F0E-B12E-6D73060364A1}</Project>
