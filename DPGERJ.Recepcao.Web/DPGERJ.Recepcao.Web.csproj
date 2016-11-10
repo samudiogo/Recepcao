@@ -142,10 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DestinoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -164,9 +166,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Fake\" />
+    <Folder Include="Views\Assistido\" />
+    <Folder Include="Views\Destino\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
+      <Project>{1908540d-6424-4f0e-b12e-6d73060364a1}</Project>
+      <Name>DPGERJ.Recepcao.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
