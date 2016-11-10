@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using DPGERJ.Recepcao.Application.Interfaces;
+using DPGERJ.Recepcao.Web.ViewModels;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
     public class DestinoController : Controller
     {
+
+        private readonly IDestinoAppService _destinoAppService;
+
+        public DestinoController(IDestinoAppService destinoAppService)
+        {
+            _destinoAppService = destinoAppService;
+        }
+
         // GET: Destino
         public ActionResult Index()
         {
-            return View();
+            var destinos = _destinoAppService.GetAll();
+            var model = destinos?.Select(destinoDb => new DestinoViewModel
+            {
+                Id = destinoDb.Id,
+                Nome = destinoDb.Nome,
+                Andar = destinoDb.Andar
+
+            });
+            return View(model);
         }
 
         // GET: Destino/Details/5
