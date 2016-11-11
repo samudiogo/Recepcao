@@ -1,32 +1,23 @@
-﻿using System.Collections.Generic;
-using DPGERJ.Recepcao.Application.Interfaces;
-using DPGERJ.Recepcao.Domain.Interfaces.Service;
-using System;
+﻿using DPGERJ.Recepcao.Application.Interfaces;
+using DPGERJ.Recepcao.Data.DataSource.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 
 namespace DPGERJ.Recepcao.Application.Services
 {
-    public class AppServiceBase<TEntity> : IDisposable,IAppServiceBase<TEntity> where TEntity : class
+    public class AppServiceBase<TContext> : ITransactionAppService<TContext> where TContext : IDbContext, new ()
     {
-        protected IServiceBase<TEntity> Service { get; }
+        private IUnitOfWork<TContext> _unitOfWork;
 
-        public AppServiceBase(IServiceBase<TEntity> service)
+        
+        public void BeginTransaction()
         {
-            Service = service;
+            _unitOfWork = ServiceLocator.Current.GetInstance<IUnitOfWork<TContext>>();
+            _unitOfWork.BeginTransaction();
         }
 
-        public void Add(TEntity entity) => Service.Add(entity);
-
-        public IEnumerable<TEntity> GetAll() => Service.GetAll();
-
-        public TEntity GetById(int id) => Service.GetById(id);
-
-        public void Remove(TEntity entity) => Service.Remove(entity);
-
-        public void Update(TEntity entity) => Service.Update(entity);
-
-        public void Dispose()
+        public void Commit()
         {
-            throw new NotImplementedException();
+            _unitOfWork.SaveChanges();
         }
     }
 }

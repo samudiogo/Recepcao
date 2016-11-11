@@ -59,13 +59,16 @@
     <Compile Include="DataSource\Config\BaseDbContext.cs" />
     <Compile Include="DataSource\Config\ContextInitializer.cs" />
     <Compile Include="DataSource\ContextManager.cs" />
+    <Compile Include="DataSource\Interfaces\IUnitOfWork.cs" />
     <Compile Include="DataSource\RecepcaoContext.cs" />
-    <Compile Include="DataSource\IContextManager.cs" />
-    <Compile Include="DataSource\IDbContext.cs" />
+    <Compile Include="DataSource\Interfaces\IContextManager.cs" />
+    <Compile Include="DataSource\Interfaces\IDbContext.cs" />
+    <Compile Include="DataSource\UnitOfWork.cs" />
     <Compile Include="Mapping\AssistidoMap.cs" />
     <Compile Include="Mapping\DestinoMap.cs" />
     <Compile Include="Mapping\VisitaMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DestinoRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +81,7 @@
       <Name>DPGERJ.Recepcao.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,6 +10,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         private readonly IDestinoAppService _destinoAppService;
 
+        
         public DestinoController(IDestinoAppService destinoAppService)
         {
             _destinoAppService = destinoAppService;

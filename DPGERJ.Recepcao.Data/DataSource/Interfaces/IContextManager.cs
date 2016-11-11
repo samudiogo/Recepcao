@@ -1,4 +1,4 @@
-﻿namespace DPGERJ.Recepcao.Data.DataSource
+﻿namespace DPGERJ.Recepcao.Data.DataSource.Interfaces
 {
     public interface IContextManager<TContext> where TContext : IDbContext, new()
     {

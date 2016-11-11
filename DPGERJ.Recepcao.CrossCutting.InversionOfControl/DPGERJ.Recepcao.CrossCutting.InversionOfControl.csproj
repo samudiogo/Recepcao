@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B995D215-6CD4-4127-89B6-397FC48A1432}</ProjectGuid>
+    <ProjectGuid>{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DPGERJ.Recepcao.Application</RootNamespace>
-    <AssemblyName>DPGERJ.Recepcao.Application</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>DPGERJ.Recepcao.CrossCutting.InversionOfControl</RootNamespace>
+    <AssemblyName>DPGERJ.Recepcao.CrossCutting.InversionOfControl</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.NinjectAdapter.Unofficial.3.2.2.0\lib\Net40\CommonServiceLocator.NinjectAdapter.Unofficial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -38,8 +42,24 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=59d6d24383174ac4, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocation.1.0.0\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -51,32 +71,35 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAppServiceBase.cs" />
-    <Compile Include="Interfaces\IAssistidoAppService.cs" />
-    <Compile Include="Interfaces\IDestinoAppService.cs" />
-    <Compile Include="Interfaces\ITransactionAppService.cs" />
-    <Compile Include="Interfaces\IVisitaAppService.cs" />
-    <Compile Include="Interfaces\IWriteOnlyAppService.cs" />
+    <Compile Include="IoC.cs" />
+    <Compile Include="Modules\InfrastructureNinjectModule.cs" />
+    <Compile Include="Modules\RepositoryNinjectModule.cs" />
+    <Compile Include="Modules\ServiceNinjectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AssistidoAppService.cs" />
-    <Compile Include="Services\DestinoAppService.cs" />
-    <Compile Include="Services\AppServiceBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Application\DPGERJ.Recepcao.Application.csproj">
+      <Project>{b995d215-6cd4-4127-89b6-397fc48a1432}</Project>
+      <Name>DPGERJ.Recepcao.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Data\DPGERJ.Recepcao.Data.csproj">
+      <Project>{61b83fc9-c150-4a24-a02d-998021eeaece}</Project>
+      <Name>DPGERJ.Recepcao.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
+      <Project>{1908540d-6424-4f0e-b12e-6d73060364a1}</Project>
+      <Name>DPGERJ.Recepcao.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DPGERJ.Recepcao.Data\DPGERJ.Recepcao.Data.csproj">
-      <Project>{61B83FC9-C150-4A24-A02D-998021EEAECE}</Project>
-      <Name>DPGERJ.Recepcao.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
-      <Project>{1908540D-6424-4F0E-B12E-6D73060364A1}</Project>
-      <Name>DPGERJ.Recepcao.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

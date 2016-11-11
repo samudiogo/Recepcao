@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace DPGERJ.Recepcao.Data.DataSource
+namespace DPGERJ.Recepcao.Data.DataSource.Interfaces
 {
     public interface IDbContext
     {

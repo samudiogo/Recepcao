@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using DPGERJ.Recepcao.Data.DataSource.Interfaces;
 
 namespace DPGERJ.Recepcao.Data.DataSource.Config
 {

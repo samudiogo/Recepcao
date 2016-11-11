@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B3BFBBC0-30F6-4E16-A108-7B0BB85DE586}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{B3BFBBC0-30F6-4E16-A108-7B0BB85DE586}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17C05B83-D6ED-4434-AA67-DD3667C16B66}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,6 +24,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{6EA2D79F-E18C-4612-90C6-22DA6D3A5545}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPGERJ.Recepcao.Application", "DPGERJ.Recepcao.Application\DPGERJ.Recepcao.Application.csproj", "{B995D215-6CD4-4127-89B6-397FC48A1432}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{1BF9EDFA-7305-4DEC-A132-14CF30F4C5D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPGERJ.Recepcao.CrossCutting.InversionOfControl", "DPGERJ.Recepcao.CrossCutting.InversionOfControl\DPGERJ.Recepcao.CrossCutting.InversionOfControl.csproj", "{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{B995D215-6CD4-4127-89B6-397FC48A1432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B995D215-6CD4-4127-89B6-397FC48A1432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B995D215-6CD4-4127-89B6-397FC48A1432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +64,7 @@ Global
 		{1908540D-6424-4F0E-B12E-6D73060364A1} = {3346836D-8A64-4023-9C08-BA6B6A2BE791}
 		{61B83FC9-C150-4A24-A02D-998021EEAECE} = {704D1AEE-A664-4F7F-9632-B335C8A7B613}
 		{B995D215-6CD4-4127-89B6-397FC48A1432} = {6EA2D79F-E18C-4612-90C6-22DA6D3A5545}
+		{1BF9EDFA-7305-4DEC-A132-14CF30F4C5D1} = {704D1AEE-A664-4F7F-9632-B335C8A7B613}
+		{0DFBC1C2-C21B-4DD9-A8E9-1DEBA389B180} = {1BF9EDFA-7305-4DEC-A132-14CF30F4C5D1}
 	EndGlobalSection
 EndGlobal

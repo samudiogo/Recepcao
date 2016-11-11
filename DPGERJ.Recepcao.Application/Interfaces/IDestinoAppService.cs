@@ -4,5 +4,6 @@ namespace DPGERJ.Recepcao.Application.Interfaces
 {
     public interface IDestinoAppService : IAppServiceBase<Destino>
     {
+
     }
 }

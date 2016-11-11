@@ -1,4 +1,6 @@
 ﻿using System.Web;
+using DPGERJ.Recepcao.Data.DataSource.Interfaces;
+
 namespace DPGERJ.Recepcao.Data.DataSource
 {
     public class ContextManager<TContext> : IContextManager<TContext>

@@ -76,6 +76,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +108,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -154,6 +170,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -187,10 +204,21 @@
       <Project>{b995d215-6cd4-4127-89b6-397fc48a1432}</Project>
       <Name>DPGERJ.Recepcao.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DPGERJ.Recepcao.CrossCutting.InversionOfControl\DPGERJ.Recepcao.CrossCutting.InversionOfControl.csproj">
+      <Project>{0dfbc1c2-c21b-4dd9-a8e9-1deba389b180}</Project>
+      <Name>DPGERJ.Recepcao.CrossCutting.InversionOfControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPGERJ.Recepcao.Data\DPGERJ.Recepcao.Data.csproj">
+      <Project>{61b83fc9-c150-4a24-a02d-998021eeaece}</Project>
+      <Name>DPGERJ.Recepcao.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DPGERJ.Recepcao.Domain\DPGERJ.Recepcao.Domain.csproj">
       <Project>{1908540d-6424-4f0e-b12e-6d73060364a1}</Project>
       <Name>DPGERJ.Recepcao.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

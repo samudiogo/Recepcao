@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DPGERJ.Recepcao.Data.DataSource;
+using DPGERJ.Recepcao.Data.DataSource.Interfaces;
 using DPGERJ.Recepcao.Domain.Interfaces.Repository;
 using Microsoft.Practices.ServiceLocation;
 
@@ -13,7 +14,7 @@ namespace DPGERJ.Recepcao.Data.Repository
 
         private readonly IDbContext _dbContext;
         private readonly IDbSet<TEntity> _dbSet;
-        public RepositoryBase(IDbContext dbContext)
+        public RepositoryBase()
         {
             var contextManager = ServiceLocator.Current.GetInstance<IContextManager<RecepcaoContext>>()
                 as ContextManager<RecepcaoContext>;
