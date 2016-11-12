@@ -1,4 +1,5 @@
-﻿using DPGERJ.Recepcao.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DPGERJ.Recepcao.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace DPGERJ.Recepcao.Data.Mapping
@@ -7,7 +8,9 @@ namespace DPGERJ.Recepcao.Data.Mapping
     {
         public DestinoMap()
         {
-            HasKey(d => d.Id);
+            HasKey(d => d.DestinoId);
+
+            //Property(d => d.DestinoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             Property(d => d.Nome)
                 .HasMaxLength(30)

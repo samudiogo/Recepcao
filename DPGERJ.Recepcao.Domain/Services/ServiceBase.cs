@@ -9,27 +9,30 @@ namespace DPGERJ.Recepcao.Domain.Services
 
         #region contrutor
 
-        protected IRepositoryBase<TEntity> Repository { get; }
+        private IRepositoryBase<TEntity> _repository;
 
         public ServiceBase(IRepositoryBase<TEntity> repository)
         {
-            Repository = repository;
+            _repository = repository;
         }
         #endregion
-        
+
+        protected IRepositoryBase<TEntity> Repository => _repository;
+
+
         /// <summary>
         ///  retorna o objeto que tenha um id idêntico ao mencionado pelo usuário
         /// </summary>
         /// <param name="id">id chave que identifica a entidade</param>
         /// <returns></returns>
-        public TEntity GetById(int id) => Repository.GetById(id);
+        public TEntity GetById(int id) => _repository.GetById(id);
 
-        public IEnumerable<TEntity> GetAll() => Repository.GetAll();
+        public IEnumerable<TEntity> GetAll() => _repository.GetAll();
 
-        public void Add(TEntity entity) => Repository.Add(entity);
+        public void Add(TEntity entity) => _repository.Add(entity);
 
-        public void Update(TEntity entity) => Repository.Update(entity);
+        public void Update(TEntity entity) => _repository.Update(entity);
 
-        public void Remove(TEntity entity) => Repository.Delete(entity);
+        public void Remove(TEntity entity) => _repository.Delete(entity);
     }
 }

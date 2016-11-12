@@ -2,7 +2,7 @@
 
 namespace DPGERJ.Recepcao.Domain.Interfaces.Service
 {
-    interface IDestinoService : IServiceBase<Destino>
+    public interface IDestinoService : IServiceBase<Destino>
     {
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using System.Configuration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using DPGERJ.Recepcao.Data.DataSource.Config;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Data.Mapping;
@@ -10,21 +10,21 @@ namespace DPGERJ.Recepcao.Data.DataSource
     {
         public DbSet<Assistido> Assistido { get; set; }
         public DbSet<Destino> Destino { get; set; }
-        public DbSet<Visita> visita { get; set; }
+        public DbSet<Visita> Visita { get; set; }
 
         static RecepcaoContext()
         {
             Database.SetInitializer(new ContextInitializer());
         }
 
-        public RecepcaoContext()
-            : base(ConfigurationManager.ConnectionStrings[""].ConnectionString)
-        {
-
-        }
+        public RecepcaoContext() : base("RecepcaoContext") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Configurations.Add(new AssistidoMap());
             modelBuilder.Configurations.Add(new DestinoMap());
             modelBuilder.Configurations.Add(new VisitaMap());

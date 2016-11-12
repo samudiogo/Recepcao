@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Domain.Entities;
+using DPGERJ.Recepcao.Domain.Interfaces.Service;
 
 namespace DPGERJ.Recepcao.Application.Services
 {
     public class DestinoAppService : AppServiceBase<RecepcaoContext>, IDestinoAppService
     {
 
-        private readonly IDestinoAppService _service;
+        private readonly IDestinoService _service;
 
-        public DestinoAppService(IDestinoAppService destinoAppService)
+        public DestinoAppService(IDestinoService destinoService)
         {
-            _service = destinoAppService;
+            _service = destinoService;
         }
 
-        public void Create(Destino destino) => _service.Create(destino);
+        public void Create(Destino destino)
+        {
+            BeginTransaction();
+            _service.Add(destino);
+            Commit();
+        }
 
         public IEnumerable<Destino> GetAll() => _service.GetAll();
 

@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
+using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Web.ViewModels;
 
 namespace DPGERJ.Recepcao.Web.Controllers
@@ -10,7 +13,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         private readonly IDestinoAppService _destinoAppService;
 
-        
+
         public DestinoController(IDestinoAppService destinoAppService)
         {
             _destinoAppService = destinoAppService;
@@ -22,7 +25,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var destinos = _destinoAppService.GetAll();
             var model = destinos?.Select(destinoDb => new DestinoViewModel
             {
-                Id = destinoDb.Id,
+                Id = destinoDb.DestinoId,
                 Nome = destinoDb.Nome,
                 Andar = destinoDb.Andar
 
@@ -36,19 +39,51 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View();
         }
 
-        // GET: Destino/Create
-        public ActionResult Create()
+        // GET: Destino/Cadastro
+        public ActionResult Cadastro()
         {
             return View();
         }
 
-        // POST: Destino/Create
+        // POST: Destino/Cadastro
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Cadastro([Bind(Include = "Nome, Andar")]DestinoViewModel model)
         {
+            if (!ModelState.IsValid) return View(model);
+
             try
             {
-                // TODO: Add insert logic here
+                var destino = new Destino { Andar = model.Andar, Nome = model.Nome };
+
+                _destinoAppService.Create(destino);
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(model);
+            }
+            return RedirectToAction("Index");
+        }
+
+        // GET: Destino/Editar/5
+        public ActionResult Editar(int id)
+        {
+            return View();
+        }
+
+        // POST: Destino/Editar/5
+        [HttpPost]
+        public ActionResult Editar([Bind(Include = "Id,Nome,Andar")] DestinoViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            try
+            {
+                var destino = _destinoAppService.GetById(model.Id);
+                if (destino == null) throw new Exception("Registro não encontrado.");
+                destino.Nome = model.Nome;
+                destino.Andar = model.Andar;
+                _destinoAppService.Update(destino);
 
                 return RedirectToAction("Index");
             }
@@ -58,48 +93,23 @@ namespace DPGERJ.Recepcao.Web.Controllers
             }
         }
 
-        // GET: Destino/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Destino/Excluir/5
+        public ActionResult Excluir(int? id)
         {
-            return View();
+            if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var dbDestino = _destinoAppService.GetById(id.Value);
+            if (dbDestino == null) return HttpNotFound();
+            return View(new DestinoViewModel { Id = dbDestino.DestinoId, Andar = dbDestino.Andar, Nome = dbDestino.Nome });
         }
 
-        // POST: Destino/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        // POST: Destino/Excluir/5
+        [HttpPost, ActionName("Excluir")]
+        public ActionResult ExcluirConfirmado(int id)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Destino/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Destino/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var destino = _destinoAppService.GetById(id);
+            if (destino == null) return HttpNotFound("destino não cadastrado");
+            _destinoAppService.Remove(destino);
+            return RedirectToAction("Index");
         }
 
         /// <summary>Releases unmanaged resources and optionally releases managed resources.</summary>

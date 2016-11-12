@@ -1,5 +1,4 @@
-using DPGERJ.Recepcao.Application.Interfaces;
-using DPGERJ.Recepcao.Application.Services;
+using DPGERJ.Recepcao.CrossCutting.InversionOfControl;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DPGERJ.Recepcao.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DPGERJ.Recepcao.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -42,7 +41,8 @@ namespace DPGERJ.Recepcao.Web.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var ioc = new IoC();
+            var kernel = ioc.Kernel;
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -64,7 +64,6 @@ namespace DPGERJ.Recepcao.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            
         }        
     }
 }

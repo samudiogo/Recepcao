@@ -11,10 +11,11 @@ namespace DPGERJ.Recepcao.CrossCutting.InversionOfControl.Modules
         public override void Load()
         {
             Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-            Bind<IDestinoRepository>().To<IDestinoRepository>();
-            
-            Bind<IDestinoRepository>().To<IDestinoRepository>();
 
+            Bind<IDestinoRepository>().To<IDestinoRepository>();
+            Bind<IAssistidoRepository>().To<AssistidoRepository>();
+            Bind<IVisitaRepository>().To<VisitaRepository>();
+            
         }
 
         #endregion

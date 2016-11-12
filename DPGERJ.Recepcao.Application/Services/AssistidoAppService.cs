@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Domain.Entities;
+using DPGERJ.Recepcao.Domain.Interfaces.Service;
+
 
 namespace DPGERJ.Recepcao.Application.Services
 {
     public class AssistidoAppService : AppServiceBase<RecepcaoContext>, IAssistidoAppService
     {
 
-        private readonly IAssistidoAppService _service;
+        private readonly IAssistidoService _service;
 
-        public AssistidoAppService(IAssistidoAppService assistidoAppService)
+        public AssistidoAppService(IAssistidoService assistidoService)
         {
-            _service = assistidoAppService;
+            _service = assistidoService;
         }
 
         #region Implementation of IWriteOnlyAppService<in Assistido>
 
-        public void Create(Assistido assitido) => _service.Create(assitido);
+        public void Create(Assistido assitido) => _service.Add(assitido);
 
         public void Update(Assistido assitido) => _service.Update(assitido);
 

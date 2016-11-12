@@ -17,10 +17,13 @@ namespace DPGERJ.Recepcao.Data.Mapping
                 .IsRequired();
 
             HasRequired(v => v.Assistido)
-                .WithRequiredPrincipal(v => v.Visita);
+                .WithMany(assistido => assistido.Visitas)
+                .HasForeignKey(visita => visita.AssistidoId);
+                
 
             HasRequired(v => v.Destino)
-                .WithRequiredPrincipal(v => v.Visita);
+                .WithMany(v => v.Visitas)
+                .HasForeignKey(visita => visita.DestinoId);
         }
     }
 }
