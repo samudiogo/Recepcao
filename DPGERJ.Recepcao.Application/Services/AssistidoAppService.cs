@@ -35,6 +35,8 @@ namespace DPGERJ.Recepcao.Application.Services
 
         public IEnumerable<Assistido> GetAll() => _service.GetAll();
 
+        public Assistido GetByDocument(string document) => _service.GetByDocument(document);
+
         #endregion
 
 
@@ -42,7 +44,6 @@ namespace DPGERJ.Recepcao.Application.Services
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose() => GC.SuppressFinalize(this);
-
         #endregion
     }
 }

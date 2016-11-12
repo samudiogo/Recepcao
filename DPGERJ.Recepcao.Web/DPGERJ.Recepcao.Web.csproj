@@ -214,11 +214,12 @@
     <Content Include="Views\Assistido\Editar.cshtml" />
     <Content Include="Views\Assistido\Index.cshtml" />
     <Content Include="Views\Destino\Excluir.cshtml" />
-    <Content Include="Views\Visita\Create.cshtml" />
+    <Content Include="Views\Visita\Cadastro.cshtml" />
     <Content Include="Views\Visita\Delete.cshtml" />
     <Content Include="Views\Visita\Details.cshtml" />
     <Content Include="Views\Visita\Edit.cshtml" />
     <Content Include="Views\Visita\Index.cshtml" />
+    <Content Include="Views\Assistido\teste.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

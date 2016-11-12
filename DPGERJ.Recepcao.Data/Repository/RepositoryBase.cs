@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Data.DataSource.Interfaces;
 using DPGERJ.Recepcao.Domain.Interfaces.Repository;
@@ -84,5 +85,7 @@ namespace DPGERJ.Recepcao.Data.Repository
             if (!disposing) return;
             Context?.Dispose();
         }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
     }
 }

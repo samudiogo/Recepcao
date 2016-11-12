@@ -4,23 +4,29 @@ using System.Web;
 using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
     public class VisitaController : Controller
     {
         private readonly IVisitaAppService _visitaAppService;
+        private readonly IAssistidoAppService _assistidoAppService;
+        private readonly IDestinoAppService _destinoAppService;
 
-        public VisitaController(IVisitaAppService visitaAppService)
+        public VisitaController(IVisitaAppService visitaAppService, IAssistidoAppService assistidoAppService, IDestinoAppService destinoAppService)
         {
+            _assistidoAppService = assistidoAppService;
             _visitaAppService = visitaAppService;
+            _destinoAppService = destinoAppService;
         }
 
         // GET: Visita
         public ActionResult Index()
         {
-            //.Include(v => v.Assistido).Include(v => v.Destino)
-            var visita = _visitaAppService.GetAll();
+
+            var visita = new List<Visita>(); //_visitaAppService.GetAll();
             return View(visita.ToList());
         }
 
@@ -39,29 +45,35 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View(visita);
         }
 
-        // GET: Visita/Create
-        public ActionResult Create()
+        // GET: Visita/Casdastro
+        public ActionResult Cadastro( string documento)
         {
-            //ViewBag.DestinoId = new SelectList(_visitaAppService.Destino, "DestinoId", "Nome");
-            return View();
+            if (string.IsNullOrEmpty(documento.Trim())) return RedirectToActionPermanent("Cadastro", "Assistido");
+
+            var visitante = _assistidoAppService.GetByDocument(documento);
+            if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido");
+            var visita = new Visita { Assistido = visitante, AssistidoId = visitante.Id };
+
+
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome");
+            return View(visita);
         }
 
-        // POST: Visita/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Visita/Casdastro
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PessoaMotivo,DataCadastro,assistidoImagem,DestinoId")] Visita visita, HttpPostedFileBase assistidoImagem)
+        public ActionResult Cadastro([Bind(Include = "Id,PessoaMotivo,AssistidoId,DestinoId")] Visita visita)
         {
             if (ModelState.IsValid)
             {
+                visita.DataCadastro = DateTime.Now;
                 _visitaAppService.Create(visita);
 
                 return RedirectToAction("Index");
             }
 
             //ViewBag.AssistidoId = new SelectList(_visitaAppService.Assistido, "Id", "Nome", visita.AssistidoId);
-            //ViewBag.DestinoId = new SelectList(_visitaAppService.Destino, "DestinoId", "Nome", visita.DestinoId);
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome");
             return View(visita);
         }
 

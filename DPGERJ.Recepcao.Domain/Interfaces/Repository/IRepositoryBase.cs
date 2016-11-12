@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace DPGERJ.Recepcao.Domain.Interfaces.Repository
 {
@@ -30,5 +32,6 @@ namespace DPGERJ.Recepcao.Domain.Interfaces.Repository
         /// </summary>
         /// <returns></returns>
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> Find(Expression<Func<TEntity,bool>> predicate);
     }
 }

@@ -13,7 +13,7 @@ namespace DPGERJ.Recepcao.Data.Mapping
             Property(a => a.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             Property(a => a.Nome)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsRequired();
 
             Property(a => a.Documento)
