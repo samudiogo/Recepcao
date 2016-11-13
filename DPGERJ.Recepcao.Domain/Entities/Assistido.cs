@@ -1,4 +1,6 @@
-﻿namespace DPGERJ.Recepcao.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace DPGERJ.Recepcao.Domain.Entities
 {
     public class Assistido
     {
@@ -8,6 +10,6 @@
         public string OrgaoEmissor { get; set; }
         public string ImagemUrl { get; set; }
 
-        public virtual Visita Visita { get; set; }
+        public virtual ICollection<Visita> Visitas { get; set; }
     }
 }

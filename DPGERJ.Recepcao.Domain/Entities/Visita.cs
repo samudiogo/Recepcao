@@ -8,8 +8,8 @@ namespace DPGERJ.Recepcao.Domain.Entities
         public string PessoaMotivo { get; set; }
         public DateTime DataCadastro { get; set; }
 
-        public int IdAssistido { get; set; }
-        public int IdDestino { get; set; }
+        public int AssistidoId { get; set; }
+        public int DestinoId { get; set; }
 
         public virtual Assistido Assistido { get; set; }
         public virtual Destino Destino { get; set; }

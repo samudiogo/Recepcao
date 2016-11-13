@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using DPGERJ.Recepcao.Domain.Entities;
 
 namespace DPGERJ.Recepcao.Data.DataSource.Config
@@ -14,13 +16,47 @@ namespace DPGERJ.Recepcao.Data.DataSource.Config
         /// <param name="context"> The context to seed. </param>
         protected override void Seed(RecepcaoContext context)
         {
-            new List<Destino>
+            var visitantePadrao = new Assistido
             {
-                new Destino {Andar = "1º andar",Nome = "Protocolo"},
-                new Destino {Andar = "2º andar",Nome = "Gabinete"},
-                new Destino {Andar = "3º andar",Nome = "Biblioteca"}
-            }.ForEach(destino => context.Destino.Add(destino));
+                Documento = "980701947",
+                ImagemUrl = "imagem-padrao.png",
+                Nome = "Visitante Padrão",
+                OrgaoEmissor = "DETRAN RJ"
+            };
+
+            var destinos = new List<Destino>
+            {
+                new Destino {Andar = "1º andar", Nome = "Protocolo"},
+                new Destino {Andar = "2º andar", Nome = "Gabinete"},
+                new Destino {Andar = "3º andar", Nome = "Biblioteca"}
+            };
+
+            new List<Visita>
+            {
+                new Visita {
+                    Assistido = visitantePadrao,
+                    Destino = destinos.Single(d=> d.Nome.Equals("Protocolo")),
+                    DataCadastro = DateTime.Now,
+                    PessoaMotivo = "wolwerine"
+                },
+                new Visita {
+                    Assistido = visitantePadrao,
+                    Destino = destinos.Single(d=> d.Nome.Equals("Gabinete")),
+                    DataCadastro = DateTime.Now,
+                    PessoaMotivo = "andré"
+                },
+                new Visita {
+                    Assistido = visitantePadrao,
+                    Destino = destinos.Single(d=> d.Nome.Equals("Biblioteca")),
+                    DataCadastro = DateTime.Now,
+                    PessoaMotivo = "seu pedro"
+                }
+
+            }.ForEach(visita => context.Visita.Add(visita));
+
             context.SaveChanges();
+
+
         }
     }
 }

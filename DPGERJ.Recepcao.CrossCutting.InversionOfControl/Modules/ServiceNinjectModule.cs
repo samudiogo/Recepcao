@@ -1,5 +1,4 @@
-﻿using DPGERJ.Recepcao.Application.Interfaces;
-using DPGERJ.Recepcao.Application.Services;
+﻿
 using DPGERJ.Recepcao.Domain.Interfaces.Service;
 using DPGERJ.Recepcao.Domain.Services;
 using Ninject.Modules;
@@ -14,7 +13,9 @@ namespace DPGERJ.Recepcao.CrossCutting.InversionOfControl.Modules
         public override void Load()
         {
             Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
-            Bind<IDestinoAppService>().To<IDestinoAppService>();
+            Bind<IDestinoService>().To<DestinoService>();
+            Bind<IAssistidoService>().To<AssitidoService>();
+            Bind<IVisitaService>().To<VisitaService>();
         }
 
         #endregion

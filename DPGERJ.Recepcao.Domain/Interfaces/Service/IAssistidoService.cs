@@ -2,7 +2,8 @@
 
 namespace DPGERJ.Recepcao.Domain.Interfaces.Service
 {
-    interface IAssistidoService : IServiceBase<Assistido>
+    public interface IAssistidoService : IServiceBase<Assistido>
     {
+        Assistido GetByDocument(string document);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DPGERJ.Recepcao.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DPGERJ.Recepcao.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace DPGERJ.Recepcao.Data.Mapping
@@ -9,8 +10,10 @@ namespace DPGERJ.Recepcao.Data.Mapping
         {
             HasKey(a => a.Id);
 
+            Property(a => a.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             Property(a => a.Nome)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsRequired();
 
             Property(a => a.Documento)
@@ -22,6 +25,7 @@ namespace DPGERJ.Recepcao.Data.Mapping
 
             Property(a => a.ImagemUrl)
                 .HasMaxLength(50);
+
         }
     }
 }

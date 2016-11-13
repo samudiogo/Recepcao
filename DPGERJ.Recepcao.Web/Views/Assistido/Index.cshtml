@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.AssistidoViewModel>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Criar novo", "Cadastro")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrgaoEmissor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagemUrl)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrgaoEmissor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImagemUrl)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Editar", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Excluir", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>

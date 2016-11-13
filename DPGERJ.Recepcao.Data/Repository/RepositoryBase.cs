@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Data.DataSource.Interfaces;
 using DPGERJ.Recepcao.Domain.Interfaces.Repository;
@@ -30,7 +31,11 @@ namespace DPGERJ.Recepcao.Data.Repository
         /// Adiciona a entidade no repositório
         /// </summary>
         /// <param name="entity">entidade</param>
-        public void Add(TEntity entity) => DbSet.Add(entity);
+        public void Add(TEntity entity)
+        {
+            DbSet.Add(entity);
+            Context.SaveChanges();
+        }
 
 
         /// <summary>
@@ -42,13 +47,18 @@ namespace DPGERJ.Recepcao.Data.Repository
             var entry = Context.Entry(entity);
             DbSet.Attach(entity);
             entry.State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         /// <summary>
         /// Deleta a entidade no repositório
         /// </summary>
         /// <param name="entity"></param>
-        public void Delete(TEntity entity) => DbSet.Remove(entity);
+        public void Delete(TEntity entity)
+        {
+            DbSet.Remove(entity);
+            Context.SaveChanges();
+        }
 
         /// <summary>
         /// Retorna uma instancia da entidade no repositório, caso não tenha, retorna null
@@ -75,5 +85,7 @@ namespace DPGERJ.Recepcao.Data.Repository
             if (!disposing) return;
             Context?.Dispose();
         }
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
     }
 }

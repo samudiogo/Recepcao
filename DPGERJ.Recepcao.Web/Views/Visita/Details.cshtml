@@ -1,0 +1,50 @@
+﻿@model DPGERJ.Recepcao.Domain.Entities.Visita
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visita</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assistido.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assistido.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PessoaMotivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PessoaMotivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
