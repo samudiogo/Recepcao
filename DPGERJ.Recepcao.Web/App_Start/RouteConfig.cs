@@ -14,9 +14,16 @@ namespace DPGERJ.Recepcao.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "assistido",
+                url: "{controller}/{action}/{documento}",
+                defaults: new { controller = "Visita", action = "Index", documento = UrlParameter.Optional }
+            );
+
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Visita", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

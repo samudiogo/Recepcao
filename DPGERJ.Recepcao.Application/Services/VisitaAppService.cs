@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Domain.Entities;
@@ -6,7 +7,7 @@ using DPGERJ.Recepcao.Domain.Interfaces.Service;
 
 namespace DPGERJ.Recepcao.Application.Services
 {
-    public class VisitaAppService: AppServiceBase<RecepcaoContext>, IVisitaAppService
+    public class VisitaAppService : AppServiceBase<RecepcaoContext>, IVisitaAppService
     {
         private readonly IVisitaService _service;
 
@@ -39,6 +40,10 @@ namespace DPGERJ.Recepcao.Application.Services
         public Visita GetById(int id) => _service.GetById(id);
 
         public IEnumerable<Visita> GetAll() => _service.GetAll();
+        public IEnumerable<Visita> VisitasDoDia(DateTime? dia)
+        {
+            return _service.VistasPorDia(dia ?? DateTime.Today);
+        }
 
         #endregion
     }

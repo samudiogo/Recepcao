@@ -51,9 +51,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
         }
 
         // GET: Assistido/Cadastro
-        public ActionResult Cadastro()
+        public ActionResult Cadastro(string documento = null)
         {
-            return View();
+            return !string.IsNullOrEmpty(documento) ? View(new Assistido { Documento = documento }) : View();
         }
 
         // POST: Assistido/Cadastro

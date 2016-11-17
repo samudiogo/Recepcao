@@ -6,6 +6,7 @@ using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Web.Routing;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
@@ -25,8 +26,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Visita
         public ActionResult Index()
         {
-
-            var visita = new List<Visita>(); //_visitaAppService.GetAll();
+            var visita = _visitaAppService.VisitasDoDia(DateTime.Today);
             return View(visita.ToList());
         }
 
@@ -45,13 +45,14 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View(visita);
         }
 
-        // GET: Visita/Casdastro
-        public ActionResult Cadastro( string documento)
+        // GET: Visita/Cadastro
+        [HttpGet]
+        public ActionResult Cadastro(string documento)
         {
             if (string.IsNullOrEmpty(documento.Trim())) return RedirectToActionPermanent("Cadastro", "Assistido");
 
             var visitante = _assistidoAppService.GetByDocument(documento);
-            if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido");
+            if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido", new { documento });
             var visita = new Visita { Assistido = visitante, AssistidoId = visitante.Id };
 
 

@@ -7,24 +7,22 @@
 <h3>Controle de entrada</h3>
 
 
-@using (Html.BeginForm("Cadastro", "Visita"))
-{
-    <div class="form-inline">
-        <p><strong>Digite os digitos do documento</strong></p>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input class="form-control" id="documento" name="documento" type="text" value="" required />
-                    <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit">Consultar</button>
-                    </span>
-                </div>
-                <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
+<div class="form-inline">
+    <p><strong>Digite os dígitos do documento</strong></p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input class="form-control" id="documento" name="documento" type="text" value="" required />
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" id="btn-consultar">Consultar</button>
+                </span>
             </div>
+            <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
         </div>
-
     </div>
-}
+
+</div>
+
 <hr class="clearfix" />
 
 <h4>Últimas entradas</h4>
@@ -46,7 +44,7 @@
     </tr>
 
     @foreach (var item in Model)
-            {
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Assistido.Nome)
@@ -69,3 +67,16 @@
     }
 
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#btn-consultar").click(function () {
+                window.location.href = "/Visita/Cadastro?documento=" + $("#documento").val();
+            });
+        });
+
+    </script>
+}
+

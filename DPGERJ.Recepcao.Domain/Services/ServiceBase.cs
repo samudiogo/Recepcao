@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DPGERJ.Recepcao.Domain.Interfaces.Repository;
+using DPGERJ.Recepcao.Domain.Interfaces.Repository.ReadOnly;
 using DPGERJ.Recepcao.Domain.Interfaces.Service;
 
 namespace DPGERJ.Recepcao.Domain.Services
@@ -10,14 +11,17 @@ namespace DPGERJ.Recepcao.Domain.Services
         #region contrutor
 
         private IRepositoryBase<TEntity> _repository;
+        private IRepositoryReadOnlyBase<TEntity> _repositoryReadOnlyBase;
 
-        public ServiceBase(IRepositoryBase<TEntity> repository)
+        public ServiceBase(IRepositoryBase<TEntity> repository, IRepositoryReadOnlyBase<TEntity> repositoryReadOnly)
         {
             _repository = repository;
+            _repositoryReadOnlyBase = repositoryReadOnly;
         }
         #endregion
 
         protected IRepositoryBase<TEntity> Repository => _repository;
+        protected IRepositoryReadOnlyBase<TEntity> ReadOnlyRepository => _repositoryReadOnlyBase;
 
 
         /// <summary>
