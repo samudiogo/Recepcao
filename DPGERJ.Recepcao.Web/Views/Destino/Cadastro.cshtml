@@ -23,8 +23,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Andar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Andar, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Andar, "", new { @class = "text-danger" })
+                <select class="form-control" name="Andar" id="Andar">
+                    <option>1º ANDAR</option>
+                    <option>2º ANDAR </option>
+                    <option>3º ANDAR</option>
+                    <option>4º ANDAR</option>  
+                    <option>Sub-solo</option>   
+                    @Html.ValidationMessageFor(model => model.Andar, "", new { @class = "text-danger" })              
+                </select>
             </div>
         </div>
 

@@ -69,7 +69,15 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Destino/Editar/5
         public ActionResult Editar(int id)
         {
-            return View();
+            var destino = _destinoAppService.GetById(id);
+            if (destino == null) return RedirectToAction("Index");
+            var model = new DestinoViewModel
+            {
+                Id = destino.DestinoId,
+                Nome = destino.Nome,
+                Andar = destino.Andar
+            };
+            return View(model);
         }
 
         // POST: Destino/Editar/5

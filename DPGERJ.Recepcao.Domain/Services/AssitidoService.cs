@@ -14,6 +14,6 @@ namespace DPGERJ.Recepcao.Domain.Services
         {
         }
 
-        public Assistido GetByDocument(string document) => Repository.Find(a => a.Documento.ToUpper().Equals(document.ToUpper())).SingleOrDefault();
+        public Assistido GetByDocument(string document) => Repository.Find(a => a.Documento.ToUpper().Equals(document.ToUpper())).FirstOrDefault();
     }
 }

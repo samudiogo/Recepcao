@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <title>@ViewBag.Title - DPGERJ - recepção</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -23,8 +23,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Visita", "Cadastro", "Visita")</li>
+                    <li>@Html.ActionLink("Visita", "Index", "Visita")</li>
                     <li>@Html.ActionLink("Destino", "Index", "Destino")</li>
+                    <li>@Html.ActionLink("Assistido", "Index", "Assistido")</li>
                 </ul>
             </div>
         </div>

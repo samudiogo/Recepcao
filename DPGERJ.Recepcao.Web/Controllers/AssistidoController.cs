@@ -60,7 +60,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl")] Assistido assistido, HttpPostedFileBase visitanteImagem)
+        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl,cadastraVisita")] Assistido assistido, bool cadastraVisita)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
                 assistido.ImagemUrl = name;
                 _assistidoAppService.Create(assistido);
 
-                return RedirectToAction("Index");
+                return cadastraVisita ? RedirectToAction("Cadastro", "Visita", new { assistido.Documento }) : RedirectToAction("Index");
             }
 
             return View(assistido);
