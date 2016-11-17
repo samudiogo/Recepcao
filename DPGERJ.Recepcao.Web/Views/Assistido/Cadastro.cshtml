@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm("Cadastro","Assistido",FormMethod.Post,new {enctype= "multipart/form-data" }))
+@using (Html.BeginForm("Cadastro", "Assistido", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ImagemUrl)
@@ -22,35 +22,35 @@
             </div>
         </div>
         <div class="col-md-5">
-            <div class="form-horizontal">
 
+            <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
                         @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Documento, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.Documento, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
                         @Html.EditorFor(model => model.Documento, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Documento, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.OrgaoEmissor, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.OrgaoEmissor, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
                         @Html.EditorFor(model => model.OrgaoEmissor, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.OrgaoEmissor, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                
+
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-4 col-md-8">
                         <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
@@ -59,9 +59,11 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Voltar", "Index")
-</div>
+    <div style="padding-left:15px; padding-top:20px;">
+        @Html.ActionLink("Voltar", "Index")
+    </div>
+
+
 @section scripts
 {
 
