@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
-using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Web.ViewModels;
 
@@ -25,7 +21,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Assistido
         public ActionResult Index()
         {
-            var model = _assistidoAppService.GetAll().Select(assistido => new AssistidoViewModel
+            var model = _assistidoAppService.ListaTopAssistidosRecentes().Select(assistido => new AssistidoViewModel
             {
                 Id = assistido.Id,
                 Nome = assistido.Nome,

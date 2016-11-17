@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DPGERJ.Recepcao.Domain.Entities.Visita>
+﻿@using System.Web.Optimization
+@model IEnumerable<DPGERJ.Recepcao.Domain.Entities.Visita>
 
 @{
     ViewBag.Title = "Index";
@@ -6,9 +7,7 @@
 
 @section head{
 
-    <link href="~/Content/datatables/DataTables-1.10.12/css/dataTables.bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/datatables/Responsive-2.1.0/css/responsive.bootstrap.css" rel="stylesheet" />
-
+    @Styles.Render("~/Content/datatables/css")
 }
 
 <h3>Controle de entrada</h3>
@@ -82,17 +81,19 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/datatables")
 
-    <script src="~/Content/datatables/DataTables-1.10.12/js/jquery.dataTables.js"></script>
-    <script src="~/Content/datatables/DataTables-1.10.12/js/dataTables.bootstrap.js"></script>
-    <script src="~/Content/datatables/Responsive-2.1.0/js/dataTables.responsive.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#btn-consultar").click(function () {
-                window.location.href = "/Visita/Cadastro?documento=" + $("#documento").val();
+        $(document)
+            .ready(function() {
+                $("#btn-consultar")
+                    .click(function() {
+                        window.location.href = "/Visita/Cadastro?documento=" + $("#documento").val();
+                    });
+                $("#visitas").DataTable({
+                    'order': [[3,'desc']]
+                });
             });
-            $("#visitas").DataTable();
-        });
 
     </script>
 }

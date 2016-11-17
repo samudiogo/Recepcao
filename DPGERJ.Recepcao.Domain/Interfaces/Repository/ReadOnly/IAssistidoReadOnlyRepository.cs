@@ -6,5 +6,11 @@ namespace DPGERJ.Recepcao.Domain.Interfaces.Repository.ReadOnly
 {
     public interface IAssistidoReadOnlyRepository : IRepositoryReadOnlyBase<Assistido>
     {
+        /// <summary>
+        /// Lista os vistantes mais recentes limitando pelo top
+        /// </summary>
+        /// <param name="top">número máximo de de registros</param>
+        /// <returns></returns>
+        IEnumerable<Assistido> ListaTopAssistidosRecentes(int top = 200);
     }
 }

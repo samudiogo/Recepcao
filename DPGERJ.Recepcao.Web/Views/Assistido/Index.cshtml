@@ -1,15 +1,22 @@
-﻿@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.AssistidoViewModel>
+﻿@using System.Web.Optimization
+@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.AssistidoViewModel>
 
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Index";
+}
 
-    <h2>Index</h2>
+@section head
+{
+    @Styles.Render("~/Content/datatables/css")
+}
 
-    <p>
-        @Html.ActionLink("Criar novo", "Cadastro")
-    </p>
-    <table class="table">
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Criar novo", "Cadastro")
+</p>
+<table class="table table-hover table-striped table-responsive" id="assistidos">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -25,7 +32,9 @@
             </th>
             <th></th>
         </tr>
+    </thead>
 
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -48,5 +57,15 @@
                 </td>
             </tr>
         }
+    </tbody>
 
-    </table>
+</table>
+@section scripts
+{
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            $("#assistidos").DataTable();
+        });
+    </script>
+}

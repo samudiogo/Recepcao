@@ -37,6 +37,16 @@ namespace DPGERJ.Recepcao.Application.Services
 
         public Assistido GetByDocument(string document) => _service.GetByDocument(document);
 
+        /// <summary>
+        /// Lista os vistantes mais recentes limitando pelo top
+        /// </summary>
+        /// <param name="top">número máximo de de registros</param>
+        /// <returns></returns>
+        public IEnumerable<Assistido> ListaTopAssistidosRecentes(int top = 200)
+        {
+            return _service.ListaTopAssistidosRecentes(top);
+        }
+
         #endregion
 
 

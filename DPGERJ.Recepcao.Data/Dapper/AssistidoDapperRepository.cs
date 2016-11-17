@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Dapper;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Domain.Interfaces.Repository.ReadOnly;
 
 namespace DPGERJ.Recepcao.Data.Dapper
 {
-    public class AssistidoDapperRepository:RepositoryBase, IAssistidoReadOnlyRepository
+    public class AssistidoDapperRepository : RepositoryBase, IAssistidoReadOnlyRepository
     {
         #region Implementation of IRepositoryReadOnlyBase<Assistido>
 
@@ -23,6 +24,22 @@ namespace DPGERJ.Recepcao.Data.Dapper
         public IEnumerable<Assistido> Find(Expression<Func<Assistido, bool>> predicate)
         {
             yield break;
+        }
+
+        /// <summary>
+        /// Lista os vistantes mais recentes limitando pelo top
+        /// </summary>
+        /// <param name="top">número máximo de de registros</param>
+        /// <returns></returns>
+        public IEnumerable<Assistido> ListaTopAssistidosRecentes(int top = 200)
+        {
+
+            using (var cn = RecepcaoConnection)
+            {
+                var vistas = cn.Query<Assistido>($"SELECT TOP({top}) * FROM Assistido order by id desc");
+
+                return vistas;
+            }
         }
 
         #endregion
