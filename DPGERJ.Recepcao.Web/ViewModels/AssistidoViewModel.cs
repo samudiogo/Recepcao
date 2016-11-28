@@ -16,6 +16,7 @@ namespace DPGERJ.Recepcao.Web.ViewModels
         public string Documento { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo")]
+        [Display(Name = "Orgão Emissor")]
         public string OrgaoEmissor { get; set; }
 
 

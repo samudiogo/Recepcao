@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -7,6 +8,8 @@ using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Web.ViewModels;
+using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
+
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
@@ -21,7 +24,11 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Assistido
         public ActionResult Index()
         {
-            var model = _assistidoAppService.ListaTopAssistidosRecentes().Select(assistido => new AssistidoViewModel
+            var model = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>
+                (_assistidoAppService.ListaTopAssistidosRecentes());
+
+
+            var modelAlternativa = _assistidoAppService.ListaTopAssistidosRecentes().Select(assistido => new AssistidoViewModel
             {
                 Id = assistido.Id,
                 Nome = assistido.Nome,
@@ -35,28 +42,28 @@ namespace DPGERJ.Recepcao.Web.Controllers
         }
 
         // GET: Assistido/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string documento)
         {
-            if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(documento)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var assistido = _assistidoAppService.GetById(id.Value);
+            //var assistido = _assistidoAppService.GetById(id.Value);
+            var assistido = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetByDocument(documento));
+
             if (assistido == null) return HttpNotFound();
-
 
             return View(assistido);
         }
 
         // GET: Assistido/Cadastro
-        public ActionResult Cadastro(string documento = null)
-        {
-            return !string.IsNullOrEmpty(documento) ? View(new Assistido { Documento = documento }) : View();
-        }
+        public ActionResult Cadastro(string documento = null) => View(new AssistidoViewModel { Documento = documento });
+
+
 
         // POST: Assistido/Cadastro
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl,cadastraVisita")] Assistido assistido, bool cadastraVisita)
+        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl,cadastraVisita")] AssistidoViewModel assistido, bool cadastraVisita)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +79,8 @@ namespace DPGERJ.Recepcao.Web.Controllers
                     }
                 }
                 assistido.ImagemUrl = name;
-                _assistidoAppService.Create(assistido);
+
+                _assistidoAppService.Create(Mapper.Map<AssistidoViewModel, Assistido>(assistido));
 
                 return cadastraVisita ? RedirectToAction("Cadastro", "Visita", new { assistido.Documento }) : RedirectToAction("Index");
             }

@@ -19,6 +19,8 @@
     <thead>
         <tr>
             <th>
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
@@ -27,9 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.OrgaoEmissor)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagemUrl)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -38,6 +38,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    <img class="img img-thumbnail " src="@Url.Content($"~/Content/fotos/{item.ImagemUrl}")" style="width: 64px" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
@@ -48,11 +51,8 @@
                     @Html.DisplayFor(modelItem => item.OrgaoEmissor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImagemUrl)
-                </td>
-                <td>
                     @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { documento = item.Documento }) |
                     @Html.ActionLink("Delete", "Excluir", new { id = item.Id })
                 </td>
             </tr>

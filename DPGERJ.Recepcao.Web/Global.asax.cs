@@ -3,6 +3,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using DPGERJ.Recepcao.Data.DataSource;
 using DPGERJ.Recepcao.Data.DataSource.Interfaces;
+using DPGERJ.Recepcao.Web.AutoMapper;
 using Microsoft.Practices.ServiceLocation;
 
 namespace DPGERJ.Recepcao.Web
@@ -14,6 +15,8 @@ namespace DPGERJ.Recepcao.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            AutoMapperConfig.RegisterMappings();
         }
 
         protected void Application_EndRequest()
