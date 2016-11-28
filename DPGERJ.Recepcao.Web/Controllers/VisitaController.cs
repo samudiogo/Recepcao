@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Web.Routing;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
