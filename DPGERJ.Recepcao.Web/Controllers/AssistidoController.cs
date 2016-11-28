@@ -46,7 +46,6 @@ namespace DPGERJ.Recepcao.Web.Controllers
         {
             if (string.IsNullOrEmpty(documento)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            //var assistido = _assistidoAppService.GetById(id.Value);
             var assistido = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetByDocument(documento));
 
             if (assistido == null) return HttpNotFound();
@@ -56,8 +55,6 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         // GET: Assistido/Cadastro
         public ActionResult Cadastro(string documento = null) => View(new AssistidoViewModel { Documento = documento });
-
-
 
         // POST: Assistido/Cadastro
 
@@ -103,17 +100,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
         {
             if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var assistido = _assistidoAppService.GetById(id.Value);
 
-            if (assistido == null) return HttpNotFound();
-            var model = new AssistidoViewModel
-            {
-                Id = assistido.Id,
-                Nome = assistido.Nome,
-                Documento = assistido.Documento,
-                OrgaoEmissor = assistido.OrgaoEmissor,
-                ImagemUrl = assistido.ImagemUrl
-            };
+            var model = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetById(id.Value));
+
             return View(model);
         }
 
@@ -127,6 +116,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
             var assistido = _assistidoAppService.GetById(model.Id);
             if (assistido == null) return HttpNotFound();
+            //TODO samuel
             assistido.Nome = model.Nome;
             assistido.Documento = model.Documento;
             assistido.OrgaoEmissor = model.OrgaoEmissor;
@@ -141,21 +131,11 @@ namespace DPGERJ.Recepcao.Web.Controllers
         {
             if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var assistido = _assistidoAppService.GetById(id.Value);
+            var assistido = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetById(id.Value));
 
             if (assistido == null) return HttpNotFound();
 
-            var model = new AssistidoViewModel
-            {
-                Id = assistido.Id,
-                Nome = assistido.Nome,
-                Documento = assistido.Documento,
-                OrgaoEmissor = assistido.OrgaoEmissor,
-                ImagemUrl = assistido.ImagemUrl
-            };
-
-
-            return View(model);
+            return View(assistido);
         }
 
         // POST: Assistido/Excluir/5

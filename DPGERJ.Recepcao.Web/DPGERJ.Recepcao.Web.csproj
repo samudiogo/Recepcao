@@ -276,7 +276,7 @@
     <Content Include="Views\Destino\Cadastro.cshtml" />
     <Content Include="Views\Destino\Editar.cshtml" />
     <Content Include="Views\Assistido\Cadastro.cshtml" />
-    <Content Include="Views\Assistido\Delete.cshtml" />
+    <Content Include="Views\Assistido\Excluir.cshtml" />
     <Content Include="Views\Assistido\Details.cshtml" />
     <Content Include="Views\Assistido\Editar.cshtml" />
     <Content Include="Views\Assistido\Index.cshtml" />
