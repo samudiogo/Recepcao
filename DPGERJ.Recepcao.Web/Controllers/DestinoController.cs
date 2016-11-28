@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Web.ViewModels;
+using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
@@ -12,7 +14,6 @@ namespace DPGERJ.Recepcao.Web.Controllers
     {
 
         private readonly IDestinoAppService _destinoAppService;
-
 
         public DestinoController(IDestinoAppService destinoAppService)
         {
@@ -22,21 +23,17 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Destino
         public ActionResult Index()
         {
-            var destinos = _destinoAppService.GetAll();
-            var model = destinos?.Select(destinoDb => new DestinoViewModel
-            {
-                Id = destinoDb.DestinoId,
-                Nome = destinoDb.Nome,
-                Andar = destinoDb.Andar
+            var model = Mapper.Map<IEnumerable<Destino>, IEnumerable<DestinoViewModel>>(_destinoAppService.GetAll());
 
-            });
             return View(model);
         }
 
         // GET: Destino/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detalhes(int id)
         {
-            return View();
+            var model = Mapper.Map<Destino, DestinoViewModel>(_destinoAppService.GetById(id));
+
+            return View(model);
         }
 
         // GET: Destino/Cadastro
@@ -53,7 +50,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
             try
             {
-                var destino = new Destino { Andar = model.Andar, Nome = model.Nome };
+                var destino = Mapper.Map<DestinoViewModel, Destino>(model);
 
                 _destinoAppService.Create(destino);
 
@@ -71,12 +68,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
         {
             var destino = _destinoAppService.GetById(id);
             if (destino == null) return RedirectToAction("Index");
-            var model = new DestinoViewModel
-            {
-                Id = destino.DestinoId,
-                Nome = destino.Nome,
-                Andar = destino.Andar
-            };
+
+            var model = Mapper.Map<Destino, DestinoViewModel>(destino);
+
             return View(model);
         }
 
@@ -87,6 +81,8 @@ namespace DPGERJ.Recepcao.Web.Controllers
             if (!ModelState.IsValid) return View(model);
             try
             {
+
+                //TODO SAMUEL
                 var destino = _destinoAppService.GetById(model.Id);
                 if (destino == null) throw new Exception("Registro não encontrado.");
                 destino.Nome = model.Nome;
@@ -107,7 +103,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var dbDestino = _destinoAppService.GetById(id.Value);
             if (dbDestino == null) return HttpNotFound();
-            return View(new DestinoViewModel { Id = dbDestino.DestinoId, Andar = dbDestino.Andar, Nome = dbDestino.Nome });
+            return View(Mapper.Map<Destino, DestinoViewModel>(dbDestino));
         }
 
         // POST: Destino/Excluir/5

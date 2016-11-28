@@ -286,6 +286,7 @@
     <Content Include="Views\Visita\Details.cshtml" />
     <Content Include="Views\Visita\Edit.cshtml" />
     <Content Include="Views\Visita\Index.cshtml" />
+    <Content Include="Views\Destino\Detalhes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

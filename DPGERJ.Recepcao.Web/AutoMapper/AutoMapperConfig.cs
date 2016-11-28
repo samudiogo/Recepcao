@@ -14,7 +14,7 @@ namespace DPGERJ.Recepcao.Web.AutoMapper
            {
                mappper.AddProfile<ViewModelToDomainMappingProfile>();
                mappper.AddProfile<DomainToViewModelMappingProfile>();
-               
+
            }));
         }
     }
@@ -23,7 +23,7 @@ namespace DPGERJ.Recepcao.Web.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Destino, DestinoViewModel>();
+            CreateMap<Destino, DestinoViewModel>().ForMember(dest => dest.Id, origem => origem.MapFrom(src => src.DestinoId));
             CreateMap<Assistido, AssistidoViewModel>();
             CreateMap<Visita, VisitaViewModel>();
         }
@@ -35,7 +35,7 @@ namespace DPGERJ.Recepcao.Web.AutoMapper
 
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<DestinoViewModel, Destino>();
+            CreateMap<DestinoViewModel, Destino>().ForMember(dest => dest.DestinoId, origem => origem.MapFrom(src => src.Id)); ;
             CreateMap<AssistidoViewModel, Assistido>();
             CreateMap<VisitaViewModel, Visita>();
 
