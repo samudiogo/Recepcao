@@ -1,38 +1,64 @@
-﻿@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.DestinoViewModel>
+﻿@using System.Web.Optimization
+@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.DestinoViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
+
+@section head{
+
+    @Styles.Render("~/Content/datatables/css")
+}
+
 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Criar novo", "Cadastro")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Andar)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="destinos">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Andar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Andar)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.Id }) |
-            @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Andar)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+    </tbody>
 
 </table>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            $("#destinos").DataTable();
+        });
+    </script>
+}
+
+
