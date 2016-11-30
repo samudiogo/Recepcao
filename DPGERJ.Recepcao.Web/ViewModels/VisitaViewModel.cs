@@ -13,8 +13,8 @@ namespace DPGERJ.Recepcao.Web.ViewModels
         [Display(Name = "Data entrada")]
         public DateTime DataCadastro { get; set; }
 
-        public int IdAssistido { get; set; }
-        public int IdDestino { get; set; }
+        public int AssistidoId { get; set; }
+        public int DestinoId { get; set; }
 
         public virtual AssistidoViewModel Assistido { get; set; } = new AssistidoViewModel();
         public virtual DestinoViewModel Destino { get; set; } = new DestinoViewModel();

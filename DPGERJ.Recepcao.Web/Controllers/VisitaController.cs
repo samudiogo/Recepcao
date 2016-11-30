@@ -52,29 +52,34 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
             var visitante = _assistidoAppService.GetByDocument(documento);
             if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido", new { documento });
-            var visita = new Visita { Assistido = visitante, AssistidoId = visitante.Id };
 
+            var model =
+                Mapper.Map<VisitaViewModel>(new Visita
+                {
+                    Assistido = visitante,
+                    PessoaMotivo = visitante.Visitas.LastOrDefault()?.PessoaMotivo
+                });
 
-            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome");
-            return View(visita);
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", visitante.Visitas.Last().DestinoId);
+            return View(model);
         }
 
         // POST: Visita/Casdastro
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastro([Bind(Include = "Id,PessoaMotivo,AssistidoId,DestinoId")] Visita visita)
+        public ActionResult Cadastro([Bind(Include = "Id,PessoaMotivo,AssistidoId,DestinoId")] VisitaViewModel model)
         {
             if (ModelState.IsValid)
             {
-                visita.DataCadastro = DateTime.Now;
-                _visitaAppService.Create(visita);
+                model.DataCadastro = DateTime.Now;
+                _visitaAppService.Create(Mapper.Map<Visita>(model));
 
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.AssistidoId = new SelectList(_visitaAppService.Assistido, "Id", "Nome", visita.AssistidoId);
-            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome");
-            return View(visita);
+            
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", model.DestinoId);
+            return View(model);
         }
 
         // GET: Visita/Edit/5
@@ -89,7 +94,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.AssistidoId = new SelectList(_visitaAppService.Assistido, "Id", "Nome", visita.AssistidoId);
+            
             //ViewBag.DestinoId = new SelectList(_visitaAppService.Destino, "DestinoId", "Nome", visita.DestinoId);
             return View(visita);
         }
