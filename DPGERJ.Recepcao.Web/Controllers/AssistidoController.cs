@@ -98,12 +98,12 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         }
         // GET: Assistido/Editar/5
-        public ActionResult Editar(int? id)
+        public ActionResult Editar(string documento)
         {
-            if (!id.HasValue) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(documento)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
 
-            var model = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetById(id.Value));
+            var model = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetByDocument(documento));
 
             return View(model);
         }
@@ -112,20 +112,35 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl")] AssistidoViewModel model)
+        public ActionResult Editar([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl, cadastraVisita")] AssistidoViewModel model, bool? cadastraVisita)
         {
             if (!ModelState.IsValid) return View(model);
 
             var assistido = _assistidoAppService.GetById(model.Id);
             if (assistido == null) return HttpNotFound();
+
+            if (!model.ImagemUrl.Contains(".jpg"))
+            {   
+                var name = $"{Guid.NewGuid().ToString("N")}.jpg";
+                var local = Server.MapPath(Url.Content(@"~/Content/fotos/"));
+                var filePathName = Path.Combine(local + name);
+                using (var fs = new FileStream(filePathName, FileMode.Create))
+                {
+                    using (var bw = new BinaryWriter(fs))
+                    {
+                        var imgData = Convert.FromBase64String(model.ImagemUrl);
+                        bw.Write(imgData);
+                    }
+                }
+                assistido.ImagemUrl = name;
+            }
             //TODO samuel
             assistido.Nome = model.Nome;
             assistido.Documento = model.Documento;
             assistido.OrgaoEmissor = model.OrgaoEmissor;
-            assistido.ImagemUrl = model.ImagemUrl;
 
             _assistidoAppService.Update(assistido);
-            return RedirectToAction("Index");
+            return cadastraVisita.HasValue && cadastraVisita.Value ? RedirectToAction("Cadastro", "Visita", new { assistido.Documento }) : RedirectToAction("Index");
         }
 
         // GET: Assistido/Excluir/5

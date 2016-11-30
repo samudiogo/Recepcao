@@ -19,6 +19,9 @@
                 <h4><b>Visitante</b> @Model.Assistido.Nome</h4>
                 <img src="@Url.Content($"~/Content/fotos/{Model.Assistido.ImagemUrl}")" class="img img-thumbnail" alt="foto do visitante" width="320" />
                 <p><b>Documento</b> @Model.Assistido.Documento</p>
+                <p>
+                    @Html.ActionLink("Alterar Foto", "Editar", "Assistido", new { Model.Assistido.Documento}, new { @class = "btn btn-warning"})
+                </p>
             </div>
 
 
