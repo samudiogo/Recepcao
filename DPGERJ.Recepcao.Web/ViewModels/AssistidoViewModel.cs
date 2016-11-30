@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DPGERJ.Recepcao.Web.ViewModels
 {
@@ -22,6 +23,7 @@ namespace DPGERJ.Recepcao.Web.ViewModels
 
         public string ImagemUrl { get; set; }
 
-        public virtual VisitaViewModel Visita { get; set; }
+        public virtual IEnumerable<VisitaViewModel> Visitas { get; set; }
+
     }
 }

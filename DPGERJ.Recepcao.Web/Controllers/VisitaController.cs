@@ -4,7 +4,9 @@ using System.Web.Mvc;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using System;
-
+using System.Collections.Generic;
+using DPGERJ.Recepcao.Web.ViewModels;
+using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 namespace DPGERJ.Recepcao.Web.Controllers
 {
     public class VisitaController : Controller
@@ -23,7 +25,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Visita
         public ActionResult Index()
         {
-            var visita = _visitaAppService.VisitasDoDia(DateTime.Today);
+            var visita = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(_visitaAppService.VisitasDoDia(DateTime.Today));
             return View(visita.ToList());
         }
 

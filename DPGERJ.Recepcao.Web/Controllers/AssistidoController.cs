@@ -46,7 +46,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
         {
             if (string.IsNullOrEmpty(documento)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var assistido = Mapper.Map<Assistido, AssistidoViewModel>(_assistidoAppService.GetByDocument(documento));
+            var dbAssitido = _assistidoAppService.GetByDocument(documento);
+
+            var assistido = Mapper.Map<Assistido, AssistidoViewModel>(dbAssitido);
 
             if (assistido == null) return HttpNotFound();
 
