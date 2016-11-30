@@ -1,0 +1,418 @@
+﻿.navbar-inverse {
+    background-color: #005222;
+}
+
+@media (min-width: 768px) {
+    ul.nav.navbar-nav.side-nav {
+        background-color: #E8E8E8;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #FFF;
+    }
+     .navbar-inverse .navbar-nav > li > a:hover {
+         background-color: #5cb85c;
+         font-weight: bold;
+     }
+
+    .side-nav > li > ul > li > a {
+        color: #000000;
+    }
+
+    .panel-dpge > .panel-heading {
+        background: #F5C233 !important;
+    }
+}
+
+.navbar-brand-logo {
+    min-height: 50px;
+  
+}
+.wrapper {
+    width: 100%;
+}
+
+
+.btn-panel-side {
+    background-color: #e8e8e8;
+    width: 100%;
+    text-align: left;
+    color: #393939;
+    font-weight: bold;
+    margin: 1px 0;
+}
+
+    .btn-panel-side:hover {
+        background-color: #f2f2f2;
+    }
+
+    .btn-panel-side span {
+        color: #60bb46;
+    }
+
+.panel-warning {
+    border-color: #cacaca;
+}
+
+    .panel-warning > .panel-heading {
+        background-color: #f5c233;
+        border-color: #edba2b;
+    }
+
+.btn-default {
+    color: #00793a;
+    font-family: "gotham-bold";
+    background-color: transparent;
+    border-color: #00793a;
+}
+
+    .btn-default:hover {
+        color: #FFFFFF;
+        background-color: #00793a;
+    }
+
+.panel-box {
+    background: #f2f2f2;
+    border-top: 4px solid #0f783b;
+    padding: 10px;
+    min-height: 89px;
+    margin-bottom: 10px;
+}
+
+.nav-wizard:before {
+    content: " ";
+    display: table;
+}
+
+.nav-wizard > li {
+    float: left;
+}
+
+    .nav-wizard > li > a {
+        height: 105px;
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+
+        .nav-wizard > li > a h2, .nav-wizard > li > a p, .nav-wizard > li > a span, .nav-wizard > li > a small {
+            color: #a9a9a9 !important;
+        }
+
+    .nav-wizard > li.active > a, .nav-wizard > li.active > a:hover, .nav-wizard > li.active > a:focus, .nav-wizard > li.active > a span, .nav-wizard > li.active > a small, .nav-wizard > li:hover > a span, .nav-wizard > li:hover > a small {
+        color: #005222 !important;
+    }
+
+    .nav-wizard > li > a:hover, .nav-wizard > li > a:focus {
+        background-color: transparent !important;
+    }
+
+    .nav-wizard > li > a {
+        position: relative; /* background-color: #60BB46; border: 1px solid #53AB3A;*/
+    }
+
+    .nav-wizard > li:first-child > a {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+
+.nav-wizard > li {
+    border-right: 0;
+}
+
+    .nav-wizard > li:not(:last-child) > a:after {
+        width: 0px;
+        height: 0px;
+        border-top: 50px inset transparent;
+        border-bottom: 50px inset transparent;
+        border-left: 20px solid #F2F2F2;
+        position: absolute;
+        content: "";
+        top: 0;
+        right: -19px;
+        z-index: 2;
+    }
+
+    .nav-wizard > li:not(:first-child) > a:before {
+        width: 0px;
+        height: 0px;
+        border-top: 50px inset transparent;
+        border-bottom: 50px inset transparent;
+        border-left: 20px solid #ABAAAA;
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+    }
+
+    .nav-wizard > li:not(:first-child) > a {
+        padding-left: 34px;
+    }
+
+.form-container {
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0px 0px 0 0;
+    padding: 45px 15px 15px;
+}
+
+.formgroup {
+    margin-bottom: 15px;
+}
+
+.form-container-footer {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+    padding: 15px 15px 15px;
+    margin: 0 0 30px 0;
+}
+
+.form-container-top {
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    padding: 15px 15px 15px;
+    margin: 30px 0 0 0;
+}
+
+.panel-heading a:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: #55522f;
+}
+
+.panel-heading a.collapsed:after {
+    content: "\e113";
+}
+
+.panel-side .accordion-inner {
+    background: #e8e8e8;
+}
+
+.accordion-inner-item {
+    padding: 5px 15px;
+    position: relative;
+    display: block;
+    margin-bottom: -1px;
+    border: 1px solid #ddd;
+}
+
+    .accordion-inner-item:hover {
+        background: #EFEFEF;
+    }
+
+.panel-side .accordion-inner a {
+    color: #393939;
+    font-size: 13px;
+}
+
+
+/* formulário sem topo */
+.form-container-notop {
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    padding: 20px 15px 15px;
+}
+
+/* Adição do Select na Paginação */
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    color: #fff;
+    /*background-color: #93c54b;*/
+    background-color: #00793a;
+    border-color: #93c54b;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #58853e;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination > li > select, .pagination > li > option {
+    color: #58853e;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination select {
+    border: 1px solid #dddddd;
+    color: #337ab7;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-align: center;
+    width: auto;
+    border-radius: 0;
+}
+
+.pagination > li:first-child > select {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-left: 0;
+}
+
+.pagination > li:last-child > select {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.pagination > li > select:hover,
+.pagination > li > select:focus {
+    background-color: #eeeeee;
+    border-color: #dddddd;
+    color: #58853e;
+}
+
+.pagination-lg > li > select {
+    font-size: 18px;
+    padding: 10px 16px;
+}
+
+.pagination-lg > li:first-child > select {
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.pagination-lg > li:last-child > select {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.pagination-sm > li > select {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.pagination-sm > li:first-child > select {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.pagination-sm > li:last-child > select {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+/* Adição do Select na Paginação - FIM */
+
+/* ERROR Messages - INICIO */
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.hover {
+    background: none;
+    box-shadow: none;
+}
+
+    .hover:hover {
+        background: #DCDCDC;
+        height: 25px;
+        cursor: default;
+        border-radius: 3px;
+        box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.2);
+    }
+/* ERROR Messages - FIM */
+
+/* Ordenação - INICIO */
+th a.asc:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e093";
+}
+
+th a.desc:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e094";
+}
+/* Ordenação - FIM */
+
+
+a, .ui-widget-content a {
+    color: #00793a;
+}
+
+/* reticências da tela de consulta */
+.navbar-brand-robson {
+    float: left;
+    height: 50px;
+    padding: 15px 0px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar-brand-robson-novo {
+    float: left;
+    height: 50px;
+    padding: 8px 0px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+/* alterações do jquery-ui */
+.ui-widget-header {
+    border-top: 0px !important;
+    border-right: 0px !important;
+    border-left: 0px !important;
+    background: none !important;
+}
+
+.ui-widget {
+    font-size: inherit;
+    font-family: inherit;
+}
+/* alterações do jquery-ui - FIM */
+
+/* fix .input-group width issue */
+.select2-container--default .select2-search--inline .select2-search__field {
+    width: auto !important;
+}
+
+/* distancia da mensagem de alerta para o menu */
+#alertMessage {
+    margin-top: 5px;
+}
+
+/* borda com conflito nas tabs do bootstrap */
+.nav-tabs > li {
+    border-right: none !important;
+}
+/* icones de configuração da consulta dinâmica */
+.consulta-filtro a {
+    display: inline;
+}
+/* fonte dos botões feitos com links */
+a.btn.btn-success {
+    color: #ffffff;
+}

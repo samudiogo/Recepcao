@@ -32,7 +32,7 @@
 <hr class="clearfix" />
 
 <h4>Últimas entradas</h4>
-<table class="table" id="visitas">
+<table class="table table-hover table-striped table-responsive" id="visitas">
     <thead>
 
         <tr>
@@ -40,11 +40,13 @@
                 @Html.DisplayNameFor(model => model.Assistido.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Destino.Nome)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Assistido.Documento)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Destino.Nome)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.DataCadastro)
             </th>
@@ -60,15 +62,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Assistido.Nome)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Destino.Nome)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Assistido.Documento)
                 </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destino.Nome)
+                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.DataCadastro)
                 </td>
+                
                 <td>
                     @Html.ActionLink("Detalhes", "Details", new { id = item.Id })
                 </td>
@@ -85,13 +91,13 @@
 
     <script>
         $(document)
-            .ready(function() {
+            .ready(function () {
                 $("#btn-consultar")
-                    .click(function() {
+                    .click(function () {
                         window.location.href = "/Visita/Cadastro?documento=" + $("#documento").val();
                     });
                 $("#visitas").DataTable({
-                    'order': [[3,'desc']]
+                    'order': [[3, 'desc']]
                 });
             });
 

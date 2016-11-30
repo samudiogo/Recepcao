@@ -1,15 +1,17 @@
-﻿@model DPGERJ.Recepcao.Domain.Entities.Visita
+﻿@model DPGERJ.Recepcao.Web.ViewModels.VisitaViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h4>Detalhes da visita</h4>
+<hr />
+<div class="col-md-4">
+    <img src="~/Content/fotos/@Model.Assistido.ImagemUrl" class="img-responsive" />
+</div>
+<div class="col-md-8">
 
-<div>
-    <h4>Visita</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Assistido.Nome)
         </dt>
@@ -45,5 +47,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-sm btn-primary" })
 </p>

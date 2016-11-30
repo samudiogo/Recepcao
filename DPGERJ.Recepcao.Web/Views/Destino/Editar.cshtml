@@ -7,7 +7,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Edição de Destino do visitante</h4>
         <hr />
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Andar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" name="Andar" id="Andar">                    
+                <select class="form-control" name="Andar" id="Andar">
                     <option>1º ANDAR</option>
                     <option>2º ANDAR </option>
                     <option>3º ANDAR</option>
@@ -38,14 +38,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info btn-sm" })
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

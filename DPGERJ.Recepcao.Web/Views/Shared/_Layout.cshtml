@@ -8,8 +8,9 @@
     <title>@ViewBag.Title - DPGERJ - Recepção</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/style-restrito.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    @RenderSection("head", required:false)
+    @RenderSection("head", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,7 +21,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Recepção", "Index", "Visita", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Index", "Visita")">
+                    <img src="~/Content/images/brand.png" alt="logo da defensoria pública" class="navbar-brand-logo" />
+                </a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

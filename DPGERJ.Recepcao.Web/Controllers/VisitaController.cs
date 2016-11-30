@@ -29,19 +29,20 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View(visita.ToList());
         }
 
-        // GET: Visita/Details/5
-        public ActionResult Details(int? id)
+        // GET: Visita/Detalhes/5
+        public ActionResult Detalhes(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var visita = _visitaAppService.GetById(id.Value);
+
             if (visita == null)
             {
                 return HttpNotFound();
             }
-            return View(visita);
+            return View(Mapper.Map<VisitaViewModel>(visita));
         }
 
         // GET: Visita/Cadastro
@@ -77,13 +78,13 @@ namespace DPGERJ.Recepcao.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            
+
             ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", model.DestinoId);
             return View(model);
         }
 
-        // GET: Visita/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Visita/Editar/5
+        public ActionResult Editar(int? id)
         {
             if (id == null)
             {
@@ -94,9 +95,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             //ViewBag.DestinoId = new SelectList(_visitaAppService.Destino, "DestinoId", "Nome", visita.DestinoId);
-            return View(visita);
+            return View(Mapper.Map<VisitaViewModel>(visita));
         }
 
         // POST: Visita/Edit/5
@@ -104,11 +105,11 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PessoaMotivo,DataCadastro,AssistidoId,DestinoId")] Visita visita)
+        public ActionResult Editar([Bind(Include = "Id,PessoaMotivo,DataCadastro,AssistidoId,DestinoId")] VisitaViewModel visita)
         {
             if (ModelState.IsValid)
             {
-                _visitaAppService.Update(visita);
+                _visitaAppService.Update(Mapper.Map<Visita>(visita));
                 return RedirectToAction("Index");
             }
             //ViewBag.AssistidoId = new SelectList(_visitaAppService.Assistido, "Id", "Nome", visita.AssistidoId);
@@ -117,7 +118,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         }
 
         // GET: Visita/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Excluir(int? id)
         {
             if (id == null)
             {
@@ -132,7 +133,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         }
 
         // POST: Visita/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

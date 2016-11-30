@@ -41,8 +41,8 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View(model);
         }
 
-        // GET: Assistido/Details/5
-        public ActionResult Details(string documento)
+        // GET: Assistido/Detalhes/5
+        public ActionResult Detalhes(string documento)
         {
             if (string.IsNullOrEmpty(documento)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
