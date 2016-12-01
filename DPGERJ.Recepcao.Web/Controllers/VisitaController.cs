@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using DPGERJ.Recepcao.Web.ViewModels;
 using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
+
 namespace DPGERJ.Recepcao.Web.Controllers
 {
     public class VisitaController : Controller
@@ -15,7 +16,8 @@ namespace DPGERJ.Recepcao.Web.Controllers
         private readonly IAssistidoAppService _assistidoAppService;
         private readonly IDestinoAppService _destinoAppService;
 
-        public VisitaController(IVisitaAppService visitaAppService, IAssistidoAppService assistidoAppService, IDestinoAppService destinoAppService)
+        public VisitaController(IVisitaAppService visitaAppService, IAssistidoAppService assistidoAppService,
+            IDestinoAppService destinoAppService)
         {
             _assistidoAppService = assistidoAppService;
             _visitaAppService = visitaAppService;
@@ -25,7 +27,9 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Visita
         public ActionResult Index()
         {
-            var visita = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(_visitaAppService.VisitasDoDia(DateTime.Today));
+            var visita =
+                Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(
+                    _visitaAppService.VisitasDoDia(DateTime.Today));
             return View(visita.ToList());
         }
 
@@ -54,14 +58,18 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var visitante = _assistidoAppService.GetByDocument(documento);
             if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido", new { documento });
 
+            
+
             var model =
                 Mapper.Map<VisitaViewModel>(new Visita
                 {
+                    AssistidoId = visitante.Id,
                     Assistido = visitante,
                     PessoaMotivo = visitante.Visitas.LastOrDefault()?.PessoaMotivo
                 });
 
-            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", visitante.Visitas.Last().DestinoId);
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome",
+                visitante.Visitas.LastOrDefault()?.DestinoId);
             return View(model);
         }
 
@@ -70,17 +78,26 @@ namespace DPGERJ.Recepcao.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastro([Bind(Include = "Id,PessoaMotivo,AssistidoId,DestinoId")] VisitaViewModel model)
         {
-            if (ModelState.IsValid)
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", model.DestinoId);
+            if (!ModelState.IsValid) return View(model);
+
+            try
             {
                 model.DataCadastro = DateTime.Now;
-                _visitaAppService.Create(Mapper.Map<Visita>(model));
+                var dbModel = Mapper.Map<Visita>(model);
+                _visitaAppService.Create(dbModel);
 
-                return RedirectToAction("Index");
+
+
+            }
+            catch (Exception exception)
+            {
+                ModelState.AddModelError("", exception);
+
+                return View(model);
             }
 
-
-            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome", model.DestinoId);
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         // GET: Visita/Editar/5

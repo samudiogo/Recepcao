@@ -32,7 +32,7 @@ namespace DPGERJ.Recepcao.Domain.Services
         {
             assistido.Nome = assistido.Nome?.ToUpper();
             assistido.Documento = assistido.Documento?.ToUpper();
-            assistido.OrgaoEmissor = assistido.Documento?.ToUpper();
+            assistido.OrgaoEmissor = assistido.OrgaoEmissor?.ToUpper();
 
             return assistido;
         }

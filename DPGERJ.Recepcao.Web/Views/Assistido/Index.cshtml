@@ -10,10 +10,10 @@
     @Styles.Render("~/Content/datatables/css")
 }
 
-<h2>Index</h2>
-
+<h2>Visitantes</h2>
+<hr />
 <p>
-    @Html.ActionLink("Criar novo", "Cadastro")
+    @Html.ActionLink("Criar novo", "Cadastro", null, new { @class = "btn btn-sm btn-primary" })
 </p>
 <table class="table table-hover table-striped table-responsive" id="assistidos">
     <thead>
@@ -51,8 +51,8 @@
                     @Html.DisplayFor(modelItem => item.OrgaoEmissor)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                    @Html.ActionLink("Detalhes", "Detalhes", new { documento = item.Documento })
+                    @Html.ActionLink("Editar", "Editar", new { item.Documento }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new { item.Documento })
                 </td>
             </tr>
         }
@@ -63,8 +63,14 @@
 {
     @Scripts.Render("~/bundles/datatables")
     <script>
-        $(document).ready(function () {
-            $("#assistidos").DataTable();
-        });
+        $(document)
+            .ready(function () {
+                $("#assistidos")
+                    .DataTable({
+                        "language": {
+                            "url": "/Content/datatables/traducao.ptbr.json"
+                        }
+                    });
+            });
     </script>
 }

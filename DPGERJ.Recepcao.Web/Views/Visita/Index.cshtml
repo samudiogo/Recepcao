@@ -76,7 +76,7 @@
                 </td>
                 
                 <td>
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id })
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id })
                 </td>
             </tr>
         }
@@ -94,10 +94,14 @@
             .ready(function () {
                 $("#btn-consultar")
                     .click(function () {
-                        window.location.href = "/Visita/Cadastro?documento=" + $("#documento").val();
+                        window.location.href = "/Visita/Cadastro/" + $("#documento").val();
                     });
                 $("#visitas").DataTable({
-                    'order': [[3, 'desc']]
+                    'order': [[3, 'desc']],
+                    "language": {
+                        "url": "/Content/datatables/traducao.ptbr.json"
+                    }
+
                 });
             });
 

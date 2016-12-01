@@ -16,7 +16,7 @@ namespace DPGERJ.Recepcao.Web.ViewModels
         public int AssistidoId { get; set; }
         public int DestinoId { get; set; }
 
-        public virtual AssistidoViewModel Assistido { get; set; } = new AssistidoViewModel();
-        public virtual DestinoViewModel Destino { get; set; } = new DestinoViewModel();
+        public virtual AssistidoViewModel Assistido { get; set; }
+        public virtual DestinoViewModel Destino { get; set; }
     }
 }

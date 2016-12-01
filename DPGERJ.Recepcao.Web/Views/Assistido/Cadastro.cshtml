@@ -12,10 +12,10 @@
     <hr />
     <div class="row">
         <div class="col-md-7">
-            <div class="col-md-6">
+            <div class="col-md-6 text-center">
                 <div id="my_camera"></div>
                 <br />
-                <a href="javascript:void(take_snapshot())" class="btn btn-success">Take Snapshot</a>
+                <a href="javascript:void(take_snapshot())" class="btn btn-sm btn-success">Tirar foto</a>
             </div>
             <div class="col-md-6">
                 <div id="imagemPreview"></div>
@@ -67,7 +67,7 @@
 }
 
     <div style="padding-left:15px; padding-top:20px;">
-        @Html.ActionLink("Voltar", "Index")
+        @Html.ActionLink("Voltar", "Index",null,new {@class="btn btn-sm btn-info"})
     </div>
 
 

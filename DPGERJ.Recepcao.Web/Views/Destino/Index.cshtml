@@ -55,7 +55,11 @@
     @Scripts.Render("~/bundles/datatables")
     <script>
         $(document).ready(function () {
-            $("#destinos").DataTable();
+            $("#destinos").DataTable({
+                "language": {
+                    "url": "/Content/datatables/traducao.ptbr.json"
+                }
+            });
         });
     </script>
 }

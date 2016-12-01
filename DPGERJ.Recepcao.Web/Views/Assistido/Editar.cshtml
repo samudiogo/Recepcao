@@ -19,10 +19,11 @@
         @Html.HiddenFor(model => model.ImagemUrl)
         <div class="row">
             <div class="col-md-7">
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <div id="my_camera"></div>
                     <br />
-                    <a href="javascript:void(take_snapshot())" class="btn btn-success">Take Snapshot</a>
+                    <a href="javascript:void(take_snapshot())" class="btn btn-success">Tirar foto</a>
+                    <br />
                 </div>
                 <div class="col-md-6">
                     <div id="imagemPreview"><img src="~/Content/fotos/@Model.ImagemUrl" width="320"/></div>
@@ -73,7 +74,7 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-sm btn-info" })
 </div>
 
 @section scripts
