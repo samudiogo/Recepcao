@@ -1,0 +1,7 @@
+Versão 1.1.10
+- troca de foto em cadastro antigo
+- ao possiblidade de apenas cadastrar o visitante, sem vista
+- padronização do layout com cores e formato com sistemas dpge
+- Consulta de histórico de visitas
+- Mapeammento de entidades em camadas diferentes com automapper
+- Configuração de DI com Ninject
