@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using DPGERJ.Recepcao.Domain.Entities;
 
 namespace DPGERJ.Recepcao.Web.ViewModels
 {
@@ -20,6 +16,10 @@ namespace DPGERJ.Recepcao.Web.ViewModels
         [Required(ErrorMessage = "Preencha o campo Andar")]
         public string Andar { get; set; }
 
-        public virtual VisitaViewModel Visita { get; set; }
+    }
+
+    public class DestinoDetalhesViewModel : DestinoViewModel
+    {
+        public virtual IEnumerable<VisitaViewModel> Visitas { get; set; }// = new List<VisitaViewModel>();
     }
 }

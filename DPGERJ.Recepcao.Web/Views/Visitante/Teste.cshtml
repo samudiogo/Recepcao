@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+<h2>Samples: Mvc5 Basic Integration</h2>
+
+
+@section head
+{
+    @Styles.Render("~/Content/datatables/css")
+}
+
+
+<table id="myTable" class="table table-hover table-striped table-responsive"></table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document)
+            .ready(function () {
+                $('#myTable')
+                    .dataTable({
+                        serverSide: true,
+                        ajax: { url: "@Url.Action("PageJsonResult")", type: "POST" },
+
+                        columns: [
+                            {
+                                name: 'id',
+                                data: 'id',
+                                title: "Id",
+                                sortable: false,
+                                searchable: false
+                            },
+                            {
+                                name: 'nome',
+                                data: "nome",
+                                title: "Nome",
+                                sortable: true,
+                                searchable: true
+                            },
+                            {
+                                name: 'Documento',
+                                data: "Documento",
+                                title: "Documento",
+                                sortable: true,
+                                searchable: true
+                            }
+
+                        ]
+                    });
+            });
+    </script>
+}

@@ -1,0 +1,36 @@
+﻿@using System.Web.Optimization
+@model IEnumerable<DPGERJ.Recepcao.Web.ViewModels.AssistidoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section head
+{
+    @Styles.Render("~/Content/datatables/css")
+}
+
+<h2>Visitantes</h2>
+<hr />
+<p>
+    @Html.ActionLink("Criar novo", "Cadastro", null, new { @class = "btn btn-sm btn-primary" })
+</p>
+
+@Html.Partial("AssistidoList", Model)
+
+
+@section scripts
+{
+        @Scripts.Render("~/bundles/datatables")
+        <script>
+            $(document)
+                .ready(function () {
+                    $("#assistidos")
+                        .DataTable({
+                            "language": {
+                                "url": "/Content/datatables/traducao.ptbr.json"
+                            }
+                        });
+                });
+        </script>
+    }

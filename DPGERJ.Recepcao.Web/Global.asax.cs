@@ -17,6 +17,7 @@ namespace DPGERJ.Recepcao.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperConfig.RegisterMappings();
+            DataTables.AspNet.Mvc5.Configuration.RegisterDataTables();
         }
 
         protected void Application_EndRequest()
