@@ -1,4 +1,4 @@
-﻿@model DPGERJ.Recepcao.Web.ViewModels.DestinoDetalhesViewModel
+﻿@model DPGERJ.Recepcao.Web.ViewModels.DestinoViewModel
 
 @{
     ViewBag.Title = "View";
@@ -26,32 +26,7 @@
 
     </dl>
 </div>
-<hr/>
-@if (Model.Visitas.Any())
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Foto</th>
-            <th>Nome</th>
-            <th>Data Visita</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var visita in Model.Visitas)
-            {
-                <tr>
-                    <td></td>
-                    <td>@visita.Assistido.Nome</td>
-                    <td>@visita.DataCadastro</td>
-                    <td>@Html.ActionLink("Detalhes","Detalhes","Visita",new {id= visita.Id}, new {@class="btn btn-link"})</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
 <p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-sm btn-warning" }) |
-    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn  btn-sm  btn-info" })
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
 </p>

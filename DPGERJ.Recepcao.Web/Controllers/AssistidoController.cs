@@ -13,70 +13,33 @@ using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
-    public class VisitanteController : Controller
+    public class AssistidoController : Controller
     {
         private readonly IAssistidoAppService _assistidoAppService;
 
-        public VisitanteController(IAssistidoAppService assistidoAppService)
+        public AssistidoController(IAssistidoAppService assistidoAppService)
         {
             _assistidoAppService = assistidoAppService;
         }
         // GET: Assistido
-        public ActionResult Index(string searchString, string sortOption, int page = 1)
+        public ActionResult Index()
         {
-            var pageSize = 10;
+            var model = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>
+                (_assistidoAppService.ListaTopAssistidosRecentes());
 
-            var modelList = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>
-                (_assistidoAppService.ListaTopAssistidosRecentes(int.MaxValue));
 
-            switch (sortOption)
+            var modelAlternativa = _assistidoAppService.ListaTopAssistidosRecentes().Select(assistido => new AssistidoViewModel
             {
-                case "nome_acs":
-                    modelList = modelList.OrderBy(p => p.Nome);
-                    break;
-                case "nome_desc":
-                    modelList = modelList.OrderByDescending(p => p.Nome);
-                    break;
-                case "documento_acs":
-                    modelList = modelList.OrderBy(p => p.Documento);
-                    break;
-                case "documento_desc":
-                    modelList = modelList.OrderByDescending(p => p.Documento);
-                    break;
+                Id = assistido.Id,
+                Nome = assistido.Nome,
+                OrgaoEmissor = assistido.OrgaoEmissor,
+                Documento = assistido.Documento,
+                ImagemUrl = assistido.ImagemUrl
+            });
 
-                case "orgao-emissor_acs":
-                    modelList = modelList.OrderBy(p => p.OrgaoEmissor);
-                    break;
-                case "orgao-emissor_desc":
-                    modelList = modelList.OrderByDescending(p => p.OrgaoEmissor);
-                    break;
-                default:
-                    modelList = modelList.OrderBy(p => p.Id);
-                    break;
 
-            }
-
-            return Request.IsAjaxRequest() ?
-                (ActionResult)PartialView("AssistidoList", modelList.ToPagedList(page, pageSize))
-                : View(modelList.ToPagedList(page, pageSize));
+            return View(model);
         }
-
-
-        public ActionResult Teste()
-        {
-            return View();
-        }
-
-        //[HttpPost]
-        //public ActionResult PageJsonResult(IDataTablesRequest request)
-        //{
-        //    var data = _assistidoAppService.ListaTopAssistidosRecentes();
-
-        //    var dataPage = data.Skip(request.Start).Take(request.Length);
-
-        //    var response = DataTablesResponse.Create(request, data.Count(), dataPage.Count(), dataPage);
-        //    return new DataTablesJsonResult(response, JsonRequestBehavior.AllowGet);
-        //}
 
         // GET: Assistido/Detalhes/5
         public ActionResult Detalhes(string documento)
@@ -157,7 +120,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             if (assistido == null) return HttpNotFound();
 
             if (!model.ImagemUrl.Contains(".jpg"))
-            {
+            {   
                 var name = $"{Guid.NewGuid().ToString("N")}.jpg";
                 var local = Server.MapPath(Url.Content(@"~/Content/fotos/"));
                 var filePathName = Path.Combine(local + name);
