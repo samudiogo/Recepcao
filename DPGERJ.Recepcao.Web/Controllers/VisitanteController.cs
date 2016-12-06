@@ -75,11 +75,17 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl,cadastraVisita")] AssistidoViewModel assistido, bool cadastraVisita)
+        public ActionResult Cadastro([Bind(Include = "Id,Nome,Documento,OrgaoEmissor,ImagemUrl,cadastraVisita")] AssistidoViewModel assistido, bool? cadastraVisita)
         {
             if (ModelState.IsValid)
             {
-                var name = $"{Guid.NewGuid().ToString("N")}.jpg";
+                if (string.IsNullOrEmpty(assistido.ImagemUrl))
+                {
+                    ModelState.AddModelError("ImagemUrl", "Não esqueça de tirar a foto!!");
+                    return View(assistido);
+                }
+
+                var name = $"{Guid.NewGuid():N}.jpg";
                 var local = Server.MapPath(Url.Content(@"~/Content/fotos/"));
                 var filePathName = Path.Combine(local + name);
                 using (var fs = new FileStream(filePathName, FileMode.Create))
@@ -94,7 +100,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
 
                 _assistidoAppService.Create(Mapper.Map<AssistidoViewModel, Assistido>(assistido));
 
-                return cadastraVisita ? RedirectToAction("Cadastro", "Visita", new { assistido.Documento }) : RedirectToAction("Index");
+                return cadastraVisita != null ? RedirectToAction("Cadastro", "Visita", new { assistido.Documento }) : RedirectToAction("Index");
             }
 
             return View(assistido);

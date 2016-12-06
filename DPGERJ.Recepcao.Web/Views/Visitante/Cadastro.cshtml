@@ -7,8 +7,9 @@
 @using (Html.BeginForm("Cadastro", "Visitante", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.ImagemUrl)
+    @Html.HiddenFor(model => model.ImagemUrl, new { @required = "required" })
     <h4>Cadastro de Assistido</h4>
+    @Html.ValidationMessageFor(model => model.ImagemUrl, "", new { @class = "text-danger" })
     <hr />
     <div class="row">
         <div class="col-md-7">
@@ -66,9 +67,9 @@
     </div>
 }
 
-    <div style="padding-left:15px; padding-top:20px;">
-        @Html.ActionLink("Voltar", "Index",null,new {@class="btn btn-sm btn-info"})
-    </div>
+<div style="padding-left:15px; padding-top:20px;">
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-sm btn-info" })
+</div>
 
 
 @section scripts
