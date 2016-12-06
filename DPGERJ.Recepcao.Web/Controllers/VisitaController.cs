@@ -53,10 +53,10 @@ namespace DPGERJ.Recepcao.Web.Controllers
         [HttpGet]
         public ActionResult Cadastro(string documento)
         {
-            if (string.IsNullOrEmpty(documento.Trim())) return RedirectToActionPermanent("Cadastro", "Assistido");
+            if (string.IsNullOrEmpty(documento?.Trim())) return RedirectToActionPermanent("Cadastro", "Visitante");
 
             var visitante = _assistidoAppService.GetByDocument(documento);
-            if (visitante == null) return RedirectToActionPermanent("Cadastro", "Assistido", new { documento });
+            if (visitante == null) return RedirectToActionPermanent("Cadastro", "Visitante", new { documento });
 
             
 

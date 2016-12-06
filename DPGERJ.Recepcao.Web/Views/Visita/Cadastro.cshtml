@@ -20,7 +20,7 @@
                 <img src="@Url.Content($"~/Content/fotos/{Model.Assistido.ImagemUrl}")" class="img img-thumbnail" alt="foto do visitante" width="320" height="240" />
                 <p><b>Documento</b> @Model.Assistido.Documento</p>
                 <p>
-                    @Html.ActionLink("Alterar Foto", "Editar", "Assistido", new { Model.Assistido.Documento }, new { @class = "btn btn-sm btn-warning" })
+                    @Html.ActionLink("Alterar Foto", "Editar", "Visitante", new { Model.Assistido.Documento }, new { @class = "btn btn-sm btn-warning" })
                 </p>
             </div>
 

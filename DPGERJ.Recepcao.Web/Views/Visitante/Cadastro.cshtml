@@ -4,7 +4,7 @@
     ViewBag.Title = "Cadastro";
 }
 
-@using (Html.BeginForm("Cadastro", "Assistido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Cadastro", "Visitante", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ImagemUrl)

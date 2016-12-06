@@ -13,11 +13,11 @@ using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 namespace DPGERJ.Recepcao.Web.Controllers
 {
-    public class AssistidoController : Controller
+    public class VisitanteController : Controller
     {
         private readonly IAssistidoAppService _assistidoAppService;
 
-        public AssistidoController(IAssistidoAppService assistidoAppService)
+        public VisitanteController(IAssistidoAppService assistidoAppService)
         {
             _assistidoAppService = assistidoAppService;
         }

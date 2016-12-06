@@ -256,7 +256,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
-    <Compile Include="Controllers\AssistidoController.cs" />
+    <Compile Include="Controllers\VisitanteController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\VisitaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -278,11 +278,11 @@
     <Content Include="Views\Destino\Index.cshtml" />
     <Content Include="Views\Destino\Cadastro.cshtml" />
     <Content Include="Views\Destino\Editar.cshtml" />
-    <Content Include="Views\Assistido\Cadastro.cshtml" />
-    <Content Include="Views\Assistido\Excluir.cshtml" />
-    <Content Include="Views\Assistido\Detalhes.cshtml" />
-    <Content Include="Views\Assistido\Editar.cshtml" />
-    <Content Include="Views\Assistido\Index.cshtml" />
+    <Content Include="Views\Visitante\Cadastro.cshtml" />
+    <Content Include="Views\Visitante\Excluir.cshtml" />
+    <Content Include="Views\Visitante\Detalhes.cshtml" />
+    <Content Include="Views\Visitante\Editar.cshtml" />
+    <Content Include="Views\Visitante\Index.cshtml" />
     <Content Include="Views\Destino\Excluir.cshtml" />
     <Content Include="Views\Visita\Cadastro.cshtml" />
     <Content Include="Views\Visita\Excluir.cshtml" />

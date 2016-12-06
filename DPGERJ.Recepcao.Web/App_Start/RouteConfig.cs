@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace DPGERJ.Recepcao.Web
@@ -14,7 +10,7 @@ namespace DPGERJ.Recepcao.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "assistido",
+                name: "visitantes",
                 url: "{controller}/{action}/{documento}",
                 defaults: new { controller = "Visita", action = "Index", documento = UrlParameter.Optional }
             );
