@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using DPGERJ.Recepcao.Web.ViewModels;
 using X.PagedList;
+using X.PagedList.Mvc;
 using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 namespace DPGERJ.Recepcao.Web.Controllers
@@ -40,6 +41,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var pageNumber = page ?? 1;
             nome = nome ?? string.Empty;
 
+            var encherLinguica = X.PagedList.Mvc.PagedListDisplayMode.IfNeeded;
             if (!string.IsNullOrEmpty(nome.Trim()))
             {
                 ViewBag.onePageList = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(_visitaAppService.GetAll().Where(v => v.Assistido.Nome.Contains(nome)))
