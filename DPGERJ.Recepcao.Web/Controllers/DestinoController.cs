@@ -23,7 +23,8 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Destino
         public ActionResult Index()
         {
-            var model = Mapper.Map<IEnumerable<Destino>, IEnumerable<DestinoViewModel>>(_destinoAppService.GetAll());
+            var dbModel = _destinoAppService.GetAll();
+            var model = Mapper.Map<IEnumerable<Destino>, IEnumerable<DestinoViewModel>>(dbModel);
 
             return View(model);
         }
@@ -31,7 +32,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
         // GET: Destino/Details/5
         public ActionResult Detalhes(int id)
         {
-            var model = Mapper.Map<Destino, DestinoViewModel>(_destinoAppService.GetById(id));
+            var model = Mapper.Map<Destino, DestinoDetalhesViewModel>(_destinoAppService.GetById(id));
 
             return View(model);
         }

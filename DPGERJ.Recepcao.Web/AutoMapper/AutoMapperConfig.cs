@@ -10,25 +10,28 @@ namespace DPGERJ.Recepcao.Web.AutoMapper
 
         public static void RegisterMappings()
         {
-            Mapper = new Mapper(new MapperConfiguration((cfg) =>
-           {
+            Mapper = new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Destino, DestinoViewModel>()
+                 .ForMember(dest => dest.Id, origem => origem.MapFrom(src => src.DestinoId))
+                 .PreserveReferences()
+                 .ReverseMap();
 
-               cfg.CreateMap<Destino, DestinoViewModel>()
-                .ForMember(dest => dest.Id, origem => origem.MapFrom(src => src.DestinoId))
-                .ReverseMap();
+                cfg.CreateMap<Destino, DestinoDetalhesViewModel>()
+                    .IncludeBase<Destino, DestinoViewModel>();
 
-               cfg.CreateMap<Assistido, AssistidoViewModel>()
-                   .PreserveReferences()
-                   .ReverseMap();
+                cfg.CreateMap<Assistido, AssistidoViewModel>()
+                    .PreserveReferences()
+                    .ReverseMap();
 
-               cfg.CreateMap<Visita, VisitaViewModel>()
-                   .ForMember(destino => destino.AssistidoId, origem => origem.MapFrom(src => src.AssistidoId))
-                   .PreserveReferences()
-                   .ReverseMap();
-           }));
+                cfg.CreateMap<Visita, VisitaViewModel>()
+                    .ForMember(destino => destino.AssistidoId, origem => origem.MapFrom(src => src.AssistidoId))
+                    .PreserveReferences()
+                    .ReverseMap();
+            }));
         }
     }
 
-    
+
 
 }
