@@ -47,6 +47,11 @@ namespace DPGERJ.Recepcao.Application.Services
             return _service.ListaTopAssistidosRecentes(top);
         }
 
+        public IEnumerable<Assistido> ListAssistidosPorNome(string nome)
+        {
+            return _service.ListAssistidosPorNome(nome);
+        }
+
         #endregion
 
 

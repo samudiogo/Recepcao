@@ -6,6 +6,7 @@ using DPGERJ.Recepcao.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using DPGERJ.Recepcao.Web.ViewModels;
+using X.PagedList;
 using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 namespace DPGERJ.Recepcao.Web.Controllers
@@ -33,6 +34,31 @@ namespace DPGERJ.Recepcao.Web.Controllers
             return View(visita.ToList());
         }
 
+
+        public ActionResult Historico(int? page, string nome)
+        {
+            var pageNumber = page ?? 1;
+            nome = nome ?? string.Empty;
+
+            if (!string.IsNullOrEmpty(nome.Trim()))
+            {
+                ViewBag.onePageList = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(_visitaAppService.GetAll().Where(v => v.Assistido.Nome.Contains(nome)))
+                    .AsParallel().ToPagedList(pageNumber, 10);
+                ViewBag.nome = nome;
+            }
+            else
+            {
+                ViewBag.onePageList = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>
+                    (_visitaAppService.GetAll())
+                    .OrderByDescending(v => v.DataCadastro).AsParallel().ToPagedList(pageNumber, 10);
+            }
+
+            return Request.IsAjaxRequest()
+                ? (ActionResult)PartialView("_VisitaLista")
+                : View();
+
+
+        }
         // GET: Visita/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -58,7 +84,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var visitante = _assistidoAppService.GetByDocument(documento);
             if (visitante == null) return RedirectToActionPermanent("Cadastro", "Visitante", new { documento });
 
-            
+
 
             var model =
                 Mapper.Map<VisitaViewModel>(new Visita
@@ -68,7 +94,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
                     PessoaMotivo = visitante.Visitas.LastOrDefault()?.PessoaMotivo
                 });
 
-            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll(), "DestinoId", "Nome",
+            ViewBag.DestinoId = new SelectList(_destinoAppService.GetAll().OrderBy(d => d.Nome), "DestinoId", "Nome",
                 visitante.Visitas.LastOrDefault()?.DestinoId);
             return View(model);
         }

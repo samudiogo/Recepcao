@@ -13,5 +13,7 @@ namespace DPGERJ.Recepcao.Domain.Interfaces.Service
         /// <param name="top">número máximo de de registros</param>
         /// <returns></returns>
         IEnumerable<Assistido> ListaTopAssistidosRecentes(int top = 200);
+
+        IEnumerable<Assistido> ListAssistidosPorNome(string nome);
     }
 }

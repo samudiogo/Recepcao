@@ -14,6 +14,14 @@ namespace DPGERJ.Recepcao.Domain.Services
 
         }
 
+        IEnumerable<Visita> IServiceBase<Visita>.GetAll()
+        {
+            //TODO parametrizar com readonly
+            var visitaRepository = (IVisitaReadOnlyRepository)ReadOnlyRepository;
+            return visitaRepository.All();
+        }
+
+
         #region Implementation of IVisitaService
 
         public IEnumerable<Visita> VistasPorDia(DateTime dia)

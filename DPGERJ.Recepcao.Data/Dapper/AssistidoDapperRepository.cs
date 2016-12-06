@@ -42,6 +42,16 @@ namespace DPGERJ.Recepcao.Data.Dapper
             }
         }
 
+        public IEnumerable<Assistido> ListAssistidosPorNome(string nome)
+        {
+            using (var cn = RecepcaoConnection)
+            {
+                var vistas = cn.Query<Assistido>($"SELECT * FROM Assistido WHERE nome like '%{nome.Trim()}%'order by Nome");
+
+                return vistas;
+            }
+        }
+
         #endregion
     }
 }

@@ -1,0 +1,48 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+
+@using (Html.BeginForm("Historico", "Visitante", FormMethod.Post))
+{
+    <div class="form-inline">
+        <p><strong>Digite o nome do visitante:</strong></p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input class="form-control" id="nome" name="nome" type="text" value="@ViewBag.nome" required />
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit" id="btn-consultar">Consultar</button>
+                    </span>
+                </div>
+                <span class="field-validation-valid text-danger" data-valmsg-for="nome" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+    </div>
+}
+<table class="table table-hover table-striped table-responsive" id="mytable">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Documento</th>
+            <th>Orgão Emissor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in ViewBag.onePageList)
+        {
+            <tr>
+                <td>@i.Nome</td>
+                <td>@i.Documento</td>
+                <td>@i.OrgaoEmissor</td>
+
+            </tr>
+            }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)ViewBag.onePageList, page =>
+Url.Action("Historico", new { page, ViewBag.nome }),
+PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "mytable"
+}))

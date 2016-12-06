@@ -49,5 +49,12 @@ namespace DPGERJ.Recepcao.Domain.Services
             return repositoryAssistidoReadOnly.ListaTopAssistidosRecentes(top);
 
         }
+
+        public IEnumerable<Assistido> ListAssistidosPorNome(string nome)
+        {
+            var repositoryAssistidoReadOnly = (IAssistidoReadOnlyRepository)ReadOnlyRepository;
+            return repositoryAssistidoReadOnly.ListAssistidosPorNome(nome);
+
+        }
     }
 }

@@ -1,8 +1,15 @@
-﻿@model DPGERJ.Recepcao.Web.ViewModels.DestinoDetalhesViewModel
+﻿@using System.Web.Optimization
+@model DPGERJ.Recepcao.Web.ViewModels.DestinoDetalhesViewModel
 
 @{
     ViewBag.Title = "View";
 }
+
+@section head{
+
+    @Styles.Render("~/Content/datatables/css")
+}
+
 
 <h2>Detalhes</h2>
 
@@ -29,7 +36,7 @@
 <hr />
 @if (Model.Visitas.Any())
 {
-    <table class="table">
+    <table class="table table-hover table-striped table-responsive" id="mytable">
         <thead>
             <tr>
                 <th>Foto</th>
@@ -55,3 +62,19 @@
     @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-sm btn-warning" }) |
     @Html.ActionLink("Voltar", "Index", null, new { @class = "btn  btn-sm  btn-info" })
 </p>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            $("#mytable").DataTable({
+                "language": {
+                    "url": "/Content/datatables/traducao.ptbr.json"
+                }
+            });
+        });
+    </script>
+}
+

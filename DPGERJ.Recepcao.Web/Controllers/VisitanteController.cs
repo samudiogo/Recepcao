@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using DPGERJ.Recepcao.Application.Interfaces;
 using DPGERJ.Recepcao.Domain.Entities;
 using DPGERJ.Recepcao.Web.ViewModels;
+using X.PagedList;
 using static DPGERJ.Recepcao.Web.AutoMapper.AutoMapperConfig;
 
 
@@ -27,20 +29,31 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var model = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>
                 (_assistidoAppService.ListaTopAssistidosRecentes());
 
-
-            var modelAlternativa = _assistidoAppService.ListaTopAssistidosRecentes().Select(assistido => new AssistidoViewModel
-            {
-                Id = assistido.Id,
-                Nome = assistido.Nome,
-                OrgaoEmissor = assistido.OrgaoEmissor,
-                Documento = assistido.Documento,
-                ImagemUrl = assistido.ImagemUrl
-            });
-
-
             return View(model);
         }
 
+        public ActionResult Historico(int? page, string nome)
+        {
+            var pageNumber = page ?? 1;
+            nome = nome ?? string.Empty;
+
+            if (!string.IsNullOrEmpty(nome.Trim()))
+            {
+                ViewBag.onePageList = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>(_assistidoAppService.ListAssistidosPorNome(nome))
+                    .AsParallel().ToPagedList(pageNumber, 10);
+                ViewBag.nome = nome;
+            }
+            else
+            {
+                ViewBag.onePageList = Mapper.Map<IEnumerable<Assistido>, IEnumerable<AssistidoViewModel>>
+                    (_assistidoAppService.ListaTopAssistidosRecentes(int.MaxValue))
+                    .OrderBy(v => v.Nome).AsParallel().ToPagedList(pageNumber, 10);
+            }
+
+            return Request.IsAjaxRequest()
+                ? (ActionResult)PartialView("_VisitanteLista")
+                : View();
+        }
         // GET: Assistido/Detalhes/5
         public ActionResult Detalhes(string documento)
         {
@@ -120,7 +133,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             if (assistido == null) return HttpNotFound();
 
             if (!model.ImagemUrl.Contains(".jpg"))
-            {   
+            {
                 var name = $"{Guid.NewGuid().ToString("N")}.jpg";
                 var local = Server.MapPath(Url.Content(@"~/Content/fotos/"));
                 var filePathName = Path.Combine(local + name);
