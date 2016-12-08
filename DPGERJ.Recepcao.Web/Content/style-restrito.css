@@ -2,6 +2,15 @@
     background-color: #005222;
 }
 
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-color: #005222;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    color: #fff;
+    background-color: #5cb85c;
+}
+
 @media (min-width: 768px) {
     ul.nav.navbar-nav.side-nav {
         background-color: #E8E8E8;
@@ -10,10 +19,11 @@
     .navbar-inverse .navbar-nav > li > a {
         color: #FFF;
     }
-     .navbar-inverse .navbar-nav > li > a:hover {
-         background-color: #5cb85c;
-         font-weight: bold;
-     }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            background-color: #5cb85c;
+            font-weight: bold;
+        }
 
     .side-nav > li > ul > li > a {
         color: #000000;
@@ -26,8 +36,8 @@
 
 .navbar-brand-logo {
     min-height: 50px;
-  
 }
+
 .wrapper {
     width: 100%;
 }
@@ -415,6 +425,7 @@ a, .ui-widget-content a {
 a.btn.btn-success {
     color: #ffffff;
 }
+
 #imagemPreview {
     background-color: #9ea199;
     background-color: rgba(158, 161, 153, 0.54);
