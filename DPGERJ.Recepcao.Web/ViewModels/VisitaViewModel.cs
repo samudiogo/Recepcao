@@ -11,6 +11,7 @@ namespace DPGERJ.Recepcao.Web.ViewModels
         public string PessoaMotivo { get; set; }
         [ScaffoldColumn(false)]
         [Display(Name = "Data entrada")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy h:mm tt}")]
         public DateTime DataCadastro { get; set; }
 
         public int AssistidoId { get; set; }
