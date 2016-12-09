@@ -41,7 +41,7 @@ namespace DPGERJ.Recepcao.Web.Controllers
             var pageNumber = page ?? 1;
             nome = nome ?? string.Empty;
 
-            var encherLinguica = X.PagedList.Mvc.PagedListDisplayMode.IfNeeded;
+            //var encherLinguica = PagedListDisplayMode.IfNeeded;
             if (!string.IsNullOrEmpty(nome.Trim()))
             {
                 ViewBag.onePageList = Mapper.Map<IEnumerable<Visita>, IEnumerable<VisitaViewModel>>(_visitaAppService.GetAll().Where(v => v.Assistido.Nome.Contains(nome)))

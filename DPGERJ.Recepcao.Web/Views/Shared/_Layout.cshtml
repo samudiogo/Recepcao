@@ -39,7 +39,7 @@
                             <li>@Html.ActionLink("Visitas", "Historico", "Visita")</li>
                         </ul>
                     </Li>
-                    <li><a href="http://sci.defensoria.rj.def.br" target="new" title="consulta de funcionários no RHDP">Consulta Funcionários</a></li>
+                    <li><a href="http://www.sci.defensoria.rj.def.br" target="new" title="consulta de funcionários no RHDP">Consulta Funcionários</a></li>
                 </ul>
             </div>
         </div>
@@ -55,6 +55,11 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+    </script>
     @RenderSection("scripts", false);
 
 </body>

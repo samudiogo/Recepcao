@@ -25,6 +25,7 @@
             <th>Nome</th>
             <th>Documento</th>
             <th>Orgão Emissor</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,9 @@
                 <td>@i.Nome</td>
                 <td>@i.Documento</td>
                 <td>@i.OrgaoEmissor</td>
-
+                <td>
+                    @Html.ActionLink("Detalhes", "Detalhes", new { i.Documento })
+                </td>
             </tr>
             }
     </tbody>
